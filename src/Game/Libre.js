@@ -188,20 +188,60 @@ const Libre = ({ route, navigation }) => {
         } else if (isRunning == true) {
             return;
         } else if (result > tongluotco) {
-            Alert.alert('Đã hết lượt')
-            setIsActive(false);
-            setPaused(true);
+            if ((totallayer1 + player1Score) > (totallayer2 + player2Score)) {
+                Alert.alert('Đội 1 thắng: ' + text1);
+                setIsActive(false);
+                setPaused(true);
+                return;
+            } else if ((totallayer1 + player1Score) < (totallayer2 + player2Score)) {
+                Alert.alert('Đội 2 thắng: ' + text2);
+                setIsActive(false);
+                setPaused(true);
+                return;
+
+            } else if ((totallayer1 + player1Score) === (totallayer2 + player2Score)) {
+                Alert.alert('Hòa');
+                setIsActive(false);
+                setPaused(true);
+                return;
+            }
+        } else if (totallayer2 + parseInt(player2Score) >= parseInt(raceto)) {
+            if ((totallayer1 + player1Score) > (totallayer2 + player2Score)) {
+                Alert.alert('Đội 1 thắng: ' + text1);
+                setIsActive(false);
+                setPaused(true);
+                return;
+            } else if ((totallayer1 + player1Score) < (totallayer2 + player2Score)) {
+                Alert.alert('Đội 2 thắng: ' + text2);
+                setIsActive(false);
+                setPaused(true);
+                return;
+
+            } else if ((totallayer1 + player1Score) === (totallayer2 + player2Score)) {
+                Alert.alert('Hòa');
+                setIsActive(false);
+                setPaused(true);
+                return;
+            }
             return;
-        } else if (totallayer2 >= parseInt(raceto)) {
-            Alert.alert('Đội 2 thắng');
-            setPaused(true);
-            setIsActive(false);
-            return;
-        } else if (totallayer1 >= parseInt(raceto)) {
-            Alert.alert('Đội 1 thắng');
-            setPaused(true);
-            setIsActive(false);
-            return;
+        } else if (totallayer1 + parseInt(player1Score) >= parseInt(raceto)) {
+            if ((totallayer1 + player1Score) > (totallayer2 + player2Score)) {
+                Alert.alert('Đội 1 thắng: ' + text1);
+                setIsActive(false);
+                setPaused(true);
+                return;
+            } else if ((totallayer1 + player1Score) < (totallayer2 + player2Score)) {
+                Alert.alert('Đội 2 thắng: ' + text2);
+                setIsActive(false);
+                setPaused(true);
+                return;
+
+            } else if ((totallayer1 + player1Score) === (totallayer2 + player2Score)) {
+                Alert.alert('Hòa');
+                setIsActive(false);
+                setPaused(true);
+                return;
+            }
         } else {
             setPaused(false);
             setIsActive(true);
@@ -325,20 +365,60 @@ const Libre = ({ route, navigation }) => {
         if (isActive == false) {
             return;
         } else if (result > tongluotco) {
-            Alert.alert('Đã hết lượt')
-            setIsActive(false);
-            setPaused(true);
+            if ((totallayer1 + player1Score) > (totallayer2 + player2Score)) {
+                Alert.alert('Đội 1 thắng: ' + text1);
+                setIsActive(false);
+                setPaused(true);
+                return;
+            } else if ((totallayer1 + player1Score) < (totallayer2 + player2Score)) {
+                Alert.alert('Đội 2 thắng: ' + text2);
+                setIsActive(false);
+                setPaused(true);
+                return;
+
+            } else if ((totallayer1 + player1Score) === (totallayer2 + player2Score)) {
+                Alert.alert('Hòa');
+                setIsActive(false);
+                setPaused(true);
+                return;
+            }
+        } else if (totallayer2 + parseInt(player2Score) >= parseInt(raceto)) {
+            if ((totallayer1 + player1Score) > (totallayer2 + player2Score)) {
+                Alert.alert('Đội 1 thắng: ' + text1);
+                setIsActive(false);
+                setPaused(true);
+                return;
+            } else if ((totallayer1 + player1Score) < (totallayer2 + player2Score)) {
+                Alert.alert('Đội 2 thắng: ' + text2);
+                setIsActive(false);
+                setPaused(true);
+                return;
+
+            } else if ((totallayer1 + player1Score) === (totallayer2 + player2Score)) {
+                Alert.alert('Hòa');
+                setIsActive(false);
+                setPaused(true);
+                return;
+            }
             return;
-        } else if (totallayer2 >= parseInt(raceto)) {
-            Alert.alert('Đội 2 thắng');
-            setPaused(true);
-            setIsActive(false);
-            return;
-        } else if (totallayer1 >= parseInt(raceto)) {
-            Alert.alert('Đội 1 thắng');
-            setPaused(true);
-            setIsActive(false);
-            return;
+        } else if (totallayer1 + parseInt(player1Score) >= parseInt(raceto)) {
+            if ((totallayer1 + player1Score) > (totallayer2 + player2Score)) {
+                Alert.alert('Đội 1 thắng: ' + text1);
+                setIsActive(false);
+                setPaused(true);
+                return;
+            } else if ((totallayer1 + player1Score) < (totallayer2 + player2Score)) {
+                Alert.alert('Đội 2 thắng: ' + text2);
+                setIsActive(false);
+                setPaused(true);
+                return;
+
+            } else if ((totallayer1 + player1Score) === (totallayer2 + player2Score)) {
+                Alert.alert('Hòa');
+                setIsActive(false);
+                setPaused(true);
+                return;
+            }
         } else if (color2 == true) {
             if (totallayer2 < parseInt(raceto)) {
                 settotalplayer2(parseInt(totallayer2) + parseInt(player2Score));
