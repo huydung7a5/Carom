@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet, Pressable, Image, StatusBar, TouchableOpacity, Alert, BackHandler } from 'react-native';
-import {styles} from '../StylesGame/StyleLib'
+import { styles } from '../StylesGame/StyleLib'
 const Libre = ({ route, navigation }) => {
     const { text2, text1, second, raceto, imageSource, imageSource1, imageSource2, secondthem, tongluotco } = route.params;
     const [player1Score, setPlayer1Score] = useState(0);
@@ -68,7 +68,7 @@ const Libre = ({ route, navigation }) => {
                 } else {
                     setIntervalId(setInterval(() => {
                         setPlayer1Score(player1Score => player1Score + 1);
-                    }, 150));
+                    }, 200));
                 }
                 break;
             case 'player2':
@@ -79,7 +79,7 @@ const Libre = ({ route, navigation }) => {
                 } else {
                     setIntervalId(setInterval(() => {
                         setPlayer2Score(player2Score => player2Score + 1);
-                    }, 150));
+                    }, 200));
                 }
                 break;
             default:
@@ -186,6 +186,21 @@ const Libre = ({ route, navigation }) => {
         if (check == null) {
             return;
         } else if (isRunning == true) {
+            return;
+        } else if (result > tongluotco) {
+            Alert.alert('Đã hết lượt')
+            setIsActive(false);
+            setPaused(true);
+            return;
+        } else if (totallayer2 >= parseInt(raceto)) {
+            Alert.alert('Đội 2 thắng');
+            setPaused(true);
+            setIsActive(false);
+            return;
+        } else if (totallayer1 >= parseInt(raceto)) {
+            Alert.alert('Đội 1 thắng');
+            setPaused(true);
+            setIsActive(false);
             return;
         } else {
             setPaused(false);
@@ -307,9 +322,23 @@ const Libre = ({ route, navigation }) => {
         setdiemcaonhat1(Math.max(diemcaonhat1, player2Score));
     }
     const handlechuyenluot = () => {
-        if (paused == true) {
+        if (isActive == false) {
             return;
-
+        } else if (result > tongluotco) {
+            Alert.alert('Đã hết lượt')
+            setIsActive(false);
+            setPaused(true);
+            return;
+        } else if (totallayer2 >= parseInt(raceto)) {
+            Alert.alert('Đội 2 thắng');
+            setPaused(true);
+            setIsActive(false);
+            return;
+        } else if (totallayer1 >= parseInt(raceto)) {
+            Alert.alert('Đội 1 thắng');
+            setPaused(true);
+            setIsActive(false);
+            return;
         } else if (color2 == true) {
             if (totallayer2 < parseInt(raceto)) {
                 settotalplayer2(parseInt(totallayer2) + parseInt(player2Score));
@@ -317,13 +346,6 @@ const Libre = ({ route, navigation }) => {
                 setColor2(false);
                 setColor1(true);
                 ischeked(false);
-                if (result >= tongluotco) {
-                    Alert.alert('Đã hết lượt')
-                    return;
-                }
-            } else if (totallayer2 >= parseInt(raceto)) {
-                Alert.alert('Đội 2 thắng');
-                return;
             }
         } else if (color1 == true) {
             if (totallayer1 < parseInt(raceto)) {
@@ -332,9 +354,6 @@ const Libre = ({ route, navigation }) => {
                 setColor2(true);
                 setColor1(false);
                 ischeked(false);
-            } else if (totallayer1 >= parseInt(raceto)) {
-                Alert.alert('Đội 1 thắng');
-                return;
             }
         } if (check == false) {
 
@@ -369,14 +388,14 @@ const Libre = ({ route, navigation }) => {
                         </View>
                     </View>
                     <View style={styles.item1}>
-                    <Image style={(imageSource1 === null ? styles.img : styles.img2)} source={{ uri: imageSource1 }} />
+                        <Image style={(imageSource1 === null ? styles.img : styles.img2)} source={{ uri: imageSource1 }} />
                         <Text style={styles.txtname}>{text2}</Text>
                     </View>
                 </View>
             </View>
             <View style={styles.body}>
                 <View style={styles.bodyitem}>
-                    <TouchableOpacity style={styles.bodyitemcon} onPress={() => handleItemClick("player1")}>
+                    <Pressable style={styles.bodyitemcon} onPress={() => handleItemClick("player1")}>
                         <View style={(color2 === true ? styles.ischeked : styles.checked)}>
                             <View style={styles.view123}>
                                 <Text style={(color2 === true ? styles.txtbodydiem : styles.txtbodydiem1)}>{totallayer1}</Text>
@@ -424,7 +443,7 @@ const Libre = ({ route, navigation }) => {
                                 </View>
                             </View>
                         </View>
-                    </TouchableOpacity>
+                    </Pressable>
                     <View style={styles.bodyitemconv4}>
                         <View style={styles.bodyitemconv1}>
                             <View style={styles.bodyitemconv2}>
@@ -435,12 +454,10 @@ const Libre = ({ route, navigation }) => {
                             </View>
                         </View>
                         <View style={styles.viewsetin}>
-
                             <Text style={styles.txtraceto1}>{setInn}</Text>
-
                         </View>
                     </View>
-                    <TouchableOpacity style={styles.bodyitemcon} onPress={() => handleItemClick("player2")}>
+                    <Pressable style={styles.bodyitemcon} onPress={() => handleItemClick("player2")}>
                         <View style={(color1 === true ? styles.ischeked : styles.checked)}>
                             <View style={styles.view123}>
                                 <Text style={(color1 === true ? styles.txtbodydiem : styles.txtbodydiem1)}>{totallayer2}</Text>
@@ -489,7 +506,7 @@ const Libre = ({ route, navigation }) => {
                                 </View>
                             </View>
                         </View>
-                    </TouchableOpacity>
+                    </Pressable>
                 </View>
             </View>
             <View style={styles.nav}>
