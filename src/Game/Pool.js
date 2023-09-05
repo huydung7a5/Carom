@@ -18,6 +18,7 @@ const Pool = ({ route }) => {
     const [isActive, setIsActive] = useState(false);
     const [isRunning, setIsRunning] = useState(true);
     const [isnum, setisnum] = useState(second);
+    const [disabled1, setDisabled1] = useState(false);
     StatusBar.setHidden(true);
 
     const handleAddScore = (player) => {
@@ -25,20 +26,27 @@ const Pool = ({ route }) => {
             case 'player1':
                 if (player1Score == raceto) {
                     Alert.alert('Player 1 thắng');
+                    setPaused(true)
+                    return;
+                } else if (paused == true) {
+                    return;
+                } else if (color1 === false) {
                     return;
                 } else {
                     setPlayer1Score(player1Score + 1);
                 }
-                break;
             case 'player2':
-
                 if (player2Score == raceto) {
                     Alert.alert('Player 2 thắng');
+                    setPaused(true)
+                    return;
+                } else if (paused == true) {
+                    return;
+                } else if (color2 === false) {
                     return;
                 } else {
                     setPlayer2Score(player2Score + 1);
                 }
-                break;
             default:
                 break;
         }
@@ -80,12 +88,20 @@ const Pool = ({ route }) => {
             case 'player1':
                 if (player1Score <= 0) {
                     return;
+                } else if (paused == true) {
+                    return;
+                } else if (color1 === false) {
+                    return;
                 } else {
                     setPlayer1Score(player1Score - 1);
                 }
                 break;
             case 'player2':
                 if (player2Score <= 0) {
+                    return;
+                } else if (paused == true) {
+                    return;
+                } else if (color2 === false) {
                     return;
                 } else {
                     setPlayer2Score(player2Score - 1);
@@ -129,6 +145,10 @@ const Pool = ({ route }) => {
             return;
         } else if (isRunning == true) {
             return;
+        } else if (player1Score == raceto) {
+            return;
+        } else if (player2Score == raceto) {
+            return;
         } else {
             setPaused(false);
             setIsActive(true);
@@ -156,21 +176,28 @@ const Pool = ({ route }) => {
             setIsVisible(false);
             setIsActive(true);
             setIsRunning(false);
+            setDisabled1(true);
         }
     }
     const themluot = () => {
         if (isActive == false) {
             setPaused(true);
+        } else if (player1Score == raceto) {
+            return;
+        } else if (player2Score == raceto) {
+            return;
         } else {
             setProgress(parseInt(second));
             setisnum(parseInt(second));
             setPaused(false);
+            setColor("green");
         }
     }
     const handlechuyenluot = () => {
         if (paused == true) {
             return;
-        } else if (color2 == true) {
+        }
+        else if (color2 == true) {
             setColor2(false);
             setColor1(true);
             ischeked(false);
@@ -183,21 +210,22 @@ const Pool = ({ route }) => {
 
     }
     return (
-        <View style={{ backgroundColor: "#000000", width: "100%", height: "100%" }}>
+        <View style={{ backgroundColor: "#454b61", width: "100%", height: "100%" }}>
             <View style={styles.title}>
                 <View style={styles.titleitem}>
-                    <View style={(color2 === true ? styles.item1 : styles.item11)}>
-                        <Image style={styles.img} source={{ uri: imageSource }} />
+                    <View style={styles.item1}>
                         <Text style={styles.txtname1}>{text1}</Text>
+                        <Image style={(imageSource === null ? styles.img : styles.img2)} source={{ uri: imageSource }} />
                     </View>
                     <View style={styles.item}>
                         <View style={styles.itemcon}>
-                            <Text style={styles.txtraceto}>VS</Text>
+                            {/* <Image style={styles.img1} source={{ uri: imageSource2 }} /> */}
+                            <Text style={styles.txtbtn1}>Khu vực để Logo</Text>
                         </View>
                     </View>
-                    <View style={(color1 === true ? styles.item1 : styles.item11)}>
+                    <View style={styles.item1}>
+                        <Image style={(imageSource1 === null ? styles.img : styles.img2)} source={{ uri: imageSource1 }} />
                         <Text style={styles.txtname}>{text2}</Text>
-                        <Image style={styles.img} source={{ uri: imageSource1 }} />
                     </View>
                 </View>
             </View>
@@ -205,6 +233,9 @@ const Pool = ({ route }) => {
                 <View style={styles.bodyitem}>
                     <TouchableOpacity style={styles.bodyitemcon} onPress={() => handleItemClick("player1")}>
                         <View style={(color2 === true ? styles.ischeked : styles.checked)}>
+                            <View>
+                                <Text style={(color2 === true ? styles.txtbodydiem : styles.txtbodydiem1)}>{player1Score}</Text>
+                            </View>
                             <View style={styles.bodyicon}>
                                 <Pressable style={styles.bodypr} onPress={() => handleAddScore('player1')}>
                                     <Text style={styles.icon}>+</Text>
@@ -213,19 +244,19 @@ const Pool = ({ route }) => {
                                     <Text style={styles.icon}>-</Text>
                                 </Pressable>
                             </View>
-                            <View>
-                                <Text style={styles.txtbodydiem}>{player1Score}</Text>
-                            </View>
                         </View>
                     </TouchableOpacity>
                     <View style={styles.bodyitemconv1}>
                         <View style={styles.bodyitemconv2}>
                             <Text style={styles.txtraceto}>Raceto</Text>
-                            <Text style={styles.txtraceto}>{raceto}</Text>
+                            <Text style={styles.txtraceto1}>{raceto}</Text>
                         </View>
                     </View>
                     <TouchableOpacity style={styles.bodyitemcon} onPress={() => handleItemClick("player2")}>
                         <View style={(color1 === true ? styles.ischeked : styles.checked)}>
+                            <View>
+                                <Text style={(color1 === true ? styles.txtbodydiem : styles.txtbodydiem1)}>{player2Score}</Text>
+                            </View>
                             <View style={styles.bodyicon}>
                                 <Pressable style={styles.bodypr} onPress={() => handleAddScore('player2')}>
                                     <Text style={styles.icon}>+</Text>
@@ -234,9 +265,6 @@ const Pool = ({ route }) => {
                                     <Text style={styles.icon}>-</Text>
                                 </Pressable>
                             </View>
-                            <View>
-                                <Text style={styles.txtbodydiem}>{player2Score}</Text>
-                            </View>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -244,25 +272,46 @@ const Pool = ({ route }) => {
             <View style={styles.footer}>
                 <View style={styles.footeritem}>
                     <View style={styles.itemfooter}>
-                        <View style={styles.footer2}>
-                            {!isActive && isVisible && (
-                                <TouchableOpacity style={styles.btn} title="Bắt đầu" onPress={handleStart} >
-                                    <Text style={styles.txt}>Bắt đầu</Text>
-                                </TouchableOpacity>
-                            )}
-                            {isActive && (
-                                <TouchableOpacity style={styles.btn} title="Tạm dừng" onPress={handlePause} >
-                                    <Text style={styles.txt}>Tạm dừng</Text>
-                                </TouchableOpacity>
-                            )}
-                            {!isActive && second !== 0 && (
-                                <TouchableOpacity style={styles.btn} title="Tiếp tục" onPress={handleResume} >
-                                    <Text style={styles.txt}>Tiếp tục</Text>
-                                </TouchableOpacity>
-                            )}
-                            <TouchableOpacity onPress={handlechuyenluot} style={styles.chuyenluot}>
-                                <Text style={styles.txtchuyenluot}>Chuyển lượt</Text>
+                        <View style={styles.itemitemcon1}>
+                            <TouchableOpacity style={styles.pr1} onPress={handleStart} disabled={disabled1}>
+                                <Text style={(disabled1 === true ? styles.txtbtn3 : styles.txtbtn2)}>
+                                    Bắt đầu
+                                </Text>
                             </TouchableOpacity>
+                        </View>
+                        <View style={styles.footer2}>
+                            <View style={styles.itemitem}>
+                                <View style={styles.itemitemcon} >
+                                    <TouchableOpacity style={styles.pr1} onPress={handlePause}>
+                                        <Text style={(paused === true ? styles.txtbtn1 : styles.txtbtn)}>
+                                            Tạm dừng
+                                        </Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={styles.itemitemcon}>
+                                    <TouchableOpacity style={styles.pr1} onPress={handleResume}>
+                                        <Text style={styles.txtbtn}>
+                                            Tiếp tục
+                                        </Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                            <View style={styles.itemitem}>
+                                <View style={styles.itemitemcon}>
+                                    <TouchableOpacity style={styles.pr1} onPress={handlechuyenluot}>
+                                        <Text style={styles.txtbtn}>
+                                            Chuyển lượt
+                                        </Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={styles.itemitemcon}>
+                                    <TouchableOpacity style={styles.pr1} onPress={themluot}>
+                                        <Text style={styles.txtbtn}>
+                                            Thêm lượt
+                                        </Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
                         </View>
                         <View style={styles.cooldow}>
                             <View style={styles.footer1}>
@@ -275,14 +324,6 @@ const Pool = ({ route }) => {
                                     <View style={[styles.progress1, { width: `${((parseInt(progress)) / (parseInt(isnum))) * 100}%`, backgroundColor: color }]}>
                                     </View>
                                 </View>
-                            </View>
-                            <View style={styles.thoigianthem}>
-                                <TouchableOpacity onPress={themluot} style={styles.themluot}>
-                                    <Text style={styles.txttamdung}>Thêm lượt</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={handlethemluot} style={styles.giahan}>
-                                    <Text style={styles.txttamdung}>Thêm thời gian</Text>
-                                </TouchableOpacity>
                             </View>
                         </View>
                     </View>

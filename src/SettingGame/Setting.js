@@ -18,8 +18,8 @@ const Setting = (props, route) => {
   const Start = () => {
     if (text1 === '' || text2 === '' || second === '' || raceto === '' || secondthem === '') {
       alert('Không được để trống thông tin');
-    } else if (isNaN(raceto) || raceto <= 0 || raceto % 1 !== 0 || raceto > 100) {
-      alert('Raceto phải là số, và là số dương và nhỏ hơn 100');
+    } else if (isNaN(raceto) || raceto <= 0 || raceto % 1 !== 0 || raceto > 1000) {
+      alert('Raceto phải là số, và là số dương và nhỏ hơn 1000');
     } else if (isNaN(second) || isNaN(secondthem)) {
       alert('Thời gian xin thêm và thời gian ra cơ phải là số');
     } else {
@@ -69,9 +69,6 @@ const Setting = (props, route) => {
             (<Image style={styles.img} source={require('../../media/anhnguoidung.jpg')} />)
             : (<Image style={styles.img} source={{ uri: imageSource }} />)}
         </TouchableOpacity>
-        <View style={styles.item2}>
-          <TextInput value={raceto} keyboardType="numeric" onChangeText={setraceto} style={styles.txtinput1} placeholder='Nhập Số Race To'></TextInput>
-        </View>
         <TouchableOpacity onPress={layanh2}>
           {imageSource1 === null ?
             (<Image style={styles.img} source={require('../../media/anhnguoidung.jpg')} />)
@@ -98,6 +95,13 @@ const Setting = (props, route) => {
           <View style={styles.pickeritem}>
             <View style={styles.item4}>
               <TextInput value={secondthem} keyboardType="numeric" onChangeText={setsecondthem} style={styles.txtinput5} placeholder='Xin thêm thời gian'></TextInput>
+            </View>
+          </View>
+        </View>
+        <View style={styles.item3}>
+          <View style={styles.pickeritem}>
+            <View style={styles.item4}>
+              <TextInput value={raceto} keyboardType="numeric" onChangeText={setraceto} style={styles.txtinput5} placeholder='Nhập Số Race To'></TextInput>
             </View>
           </View>
         </View>
@@ -169,7 +173,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '3%',
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
   },
   pr1: {
     marginTop: '4%',
@@ -177,7 +181,7 @@ const styles = StyleSheet.create({
     height: '10%',
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
   },
   txtbtn: {
     fontSize: 25,

@@ -27,9 +27,10 @@ const NewNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Tab.Screen name="SettingLib" component={SettingLib} />
-        <Stack.Screen name="TrangChu" component={TrangChu} ></Stack.Screen>
+          <Tab.Screen name="SettingLib" component={SettingLib} />
         <Stack.Screen name="Setting" component={Setting} ></Stack.Screen>
+      
+        <Stack.Screen name="TrangChu" component={TrangChu} ></Stack.Screen>
         <Stack.Screen name="Pool" component={Pool} ></Stack.Screen>
         <Stack.Screen name="Libre" component={Libre} ></Stack.Screen>
         <Stack.Screen name='SettingLib4' component={SettingLib4} ></Stack.Screen>

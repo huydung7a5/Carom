@@ -47,7 +47,6 @@ const Libre = ({ route, navigation }) => {
             ]);
             return true;
         };
-
         const backHandler = BackHandler.addEventListener(
             "hardwareBackPress",
             backAction

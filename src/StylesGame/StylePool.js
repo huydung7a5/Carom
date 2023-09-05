@@ -1,24 +1,40 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 export const styles = StyleSheet.create({
+    img2: {
+        width: "33%",
+        height: "120%",
+        borderRadius: 70,
+        borderWidth: 1,
+        borderColor: "#1bf526",
+        backgroundColor: "#454b61"
+    },
     bodypr: {
-        backgroundColor: "white",
-        width: "46%",
-        height: "80%",
+        backgroundColor: "#454b61",
+        width: "30%",
+        height: "60%",
         justifyContent: "center",
         alignItems: "center",
+        borderRadius:10,
+        borderWidth: 1,
+        borderColor: "white"
     },
     bodyicon: {
         justifyContent: "space-evenly",
         flexDirection: "row",
         width: "100%",
-        height: "30%",
+        height: "20%",
         marginTop: "3%",
         alignItems: "center",
     },
     txtraceto: {
         color: "white",
-        fontSize: 50,
+        fontSize: 70,
+        fontWeight: "bold"
+    },
+    txtraceto1: {
+        color: "yellow",
+        fontSize: 70,
         fontWeight: "bold"
     },
     itemcon2: {
@@ -37,7 +53,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         height: '100%',
-        justifyContent: 'space-around',
+        justifyContent: 'center',
     },
 
     txt: {
@@ -69,25 +85,65 @@ export const styles = StyleSheet.create({
         backgroundColor: "#ffc000",
     },
     cooldow: {
-        width: "50%",
+        width: "45%",
         height: "100%",
         alignItems: "center",
+        justifyContent: "center",
     },
-
     footer2: {
         alignItems: 'center',
-        width: '20%',
+        width: '30%',
         height: '70%',
         justifyContent: "center",
+    },
+    itemitemcon: {
+        backgroundColor: "#252a40",
+        width: "45%",
+        borderRadius: 10,
+    },
+    itemitemcon1: {
+        backgroundColor: "#252a40",
+        width: "20%",
+        borderRadius: 10,
+        height:"83%",
+        left:"15%"
+    },
+
+    itemitem: {
+        width: "70%",
+        height: "50%",
+        justifyContent: "space-around",
+        flexDirection: "row",
+        marginTop: "5%",
     },
     footer1: {
         borderRadius: 2,
         borderColor: 'red',
-        borderWidth: 2,
+        borderWidth: 1,
         alignItems: 'center',
         width: '100%',
-        height: '35%',
+        height: '45%',
         flexDirection: 'row',
+    },
+    txtbtn: {
+        color: "white",
+        fontSize: 18,
+        fontWeight: "bold",
+    },
+    txtbtn1: {
+        color: "red",
+        fontSize: 18,
+        fontWeight: "bold",
+    },
+    txtbtn2: {
+        color: "white",
+        fontSize: 28,
+        fontWeight: "bold",
+    },
+    txtbtn3: {
+        color: "red",
+        fontSize: 28,
+        fontWeight: "bold",
     },
     seconds: {
         alignItems: 'center',
@@ -104,10 +160,16 @@ export const styles = StyleSheet.create({
     itemcon3: {
         width: '80%',
         alignItems: 'center',
-        borderWidth: 2,
+        borderWidth: 1,
         borderColor: 'black',
-        height: '95%',
+        height: '100%',
         justifyContent: 'center',
+    },
+    pr1: {
+        width: "100%",
+        height: "100%",
+        justifyContent: "center",
+        alignItems: "center",
     },
     progress1: {
         height: '100%',
@@ -143,49 +205,55 @@ export const styles = StyleSheet.create({
         marginLeft: "1%",
     },
     checked: {
-        borderWidth: 6,
-        borderColor: "yellow",
-        width: "95%",
+        borderWidth: 2,
+        borderColor: "#fe0000",
+        width: "100%",
         height: "100%",
-        backgroundColor: "#FF1724",
         justifyContent: "space-evenly",
-        alignItems: "center"
+        alignItems: "center",
+        borderRadius: 40,
+        backgroundColor: "#252a40",
     },
     ischeked: {
-        width: "95%",
+        width: "100%",
         height: "100%",
-        backgroundColor: "#FFC000",
         justifyContent: "space-evenly",
         alignItems: "center",
-        borderWidth: 6,
-        borderColor: "#ccc",
+        borderRadius: 40,
+        borderWidth: 2,
+        borderColor: "white",
+        backgroundColor: "#252a40",
     },
 
+
     icon: {
-        color: "black",
-        fontSize: 50,
-        fontWeight: "bold",
-        width: "25%",
-        height: "80%",
+        color: "white",
+        fontSize: 40,
+        fontWeight: "bold",    
         textAlign: "center",
         alignItems: "center",
+        marginTop:"-5%"
+    
     },
     txtbodydiem: {
         color: "#FFFFFF",
         fontSize: 150,
         fontWeight: "bold",
-        width: "60%",
-        height: "80%",
         textAlign: "center",
+    },
+    txtbodydiem1: {
+        color: "#fe0000",
+        fontSize: 150,
+        fontWeight: "bold",
     },
     footeritem: {
         width: "100%",
         height: "100%",
     },
     footer: {
-        marginTop: "4%",
+        marginTop: "3.5%",
         width: "100%",
-        height: "25%",
+        height: "20%",
         alignItems: "center",
     },
     txtname: {
@@ -206,6 +274,7 @@ export const styles = StyleSheet.create({
         height: "80%",
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor:"white"
     },
     navitemconv3: {
         width: "60%",
@@ -255,11 +324,14 @@ export const styles = StyleSheet.create({
         alignItems: "center",
     },
     bodyitemconv2: {
-        backgroundColor: "#FF1724",
-        width: "60%",
+        backgroundColor: "#252a40",
+        width: "80%",
         height: "60%",
         justifyContent: "space-evenly",
         alignItems: "center",
+        borderWidth:1,
+        borderColor:"white",
+        borderRadius:50
     },
     bodyitemconv1: {
         alignItems: "center",
@@ -285,54 +357,59 @@ export const styles = StyleSheet.create({
         width: "100%",
         height: "50%",
     },
+    img2: {
+        width: "30%",
+        height: "190%",
+        borderRadius: 70,
+        borderWidth: 1,
+        borderColor: "#1bf526",
+        backgroundColor: "#454b61"
+    },
     img: {
-        width: "17%",
+        width: "30%",
+        height: "190%",
+    },
+    img1: {
+        width: "100%",
         height: "100%",
-        borderRadius: 50,
     },
     item: {
-        width: "20%",
+        width: "25%",
         height: "100%",
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "row"
     },
     item1: {
-        width: "40%",
-        height: "100%",
-        justifyContent: "space-evenly",
+        width: "35%",
+        height: "40%",
+        justifyContent: "space-between",
         alignItems: "center",
         flexDirection: "row",
-        backgroundColor: "#0000FE",
-        borderRadius: 5,
-        borderWidth: 3,
-        borderColor: "#06297a",
+        borderRadius: 50,
+        borderWidth: 1,
+        borderColor: "#01f406",
     },
-    item11: {
-        width: "40%",
-        height: "100%",
-        justifyContent: "space-evenly",
+    item2: {
+        width: "30%",
+        height: "60%",
+        justifyContent: "space-between",
         alignItems: "center",
         flexDirection: "row",
-        backgroundColor: "red",
-        borderRadius: 5,
-        borderWidth: 3,
-        borderColor: "#06297a",
+        backgroundColor: "#FF1724",
+        borderRadius: 50,
     },
     titleitem: {
         justifyContent: 'space-around',
         flexDirection: 'row',
-        width: "100%",
-        height: "60%",
+        width: "95%",
+        height: "100%",
         alignItems: "center",
-        backgroundColor: "#06297a",
-        borderWidth: 5,
     },
     title: {
         width: "100%",
         height: "20%",
         alignItems: "center",
-        marginTop: "1%"
     }
 });
 const StylePool = () => {
