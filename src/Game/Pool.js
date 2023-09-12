@@ -32,16 +32,15 @@ const Pool = ({ route }) => {
 
     if (width < 400) {
         fontSizeScore = (width + height) * 0.005; // Tính toán kích thước chữ cho màn hình nhỏ
-        fontSizeRaceTo = (width + height) * 0.07; // Tính toán kích thước chữ cho màn hình nhỏ
+        fontSizeRaceTo = (width + height) * 0.06; // Tính toán kích thước chữ cho màn hình nhỏ
         fontSizeAll = (width + height) * 0.08;
         fontSizeName = (width + height) * 0.01;
     } else {
-        fontSizeScore = (width + height) * 0.04; // Tính toán kích thước chữ cho màn hình lớn
-        fontSizeRaceTo = (width + height) * 0.10; // Tính toán kích thước chữ cho màn hình lớn
-        fontSizeAll = (width + height) * 0.008;
+        fontSizeScore = (width + height) * 0.03; // Tính toán kích thước chữ cho màn hình lớn
+        fontSizeRaceTo = (width + height) * 0.8; // Tính toán kích thước chữ cho màn hình lớn
+        fontSizeAll = (width + height) * 0.007;
         fontSizeName = (width + height) * 0.02;
     }
-
     const handleAddScore = (player) => {
         switch (player) {
             case 'player1':
