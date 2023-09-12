@@ -31,13 +31,13 @@ const Pool = ({ route }) => {
     let fontSizeName;
 
     if (width < 400) {
-        fontSizeScore = (width + height) * 0.005; // Tính toán kích thước chữ cho màn hình nhỏ
-        fontSizeRaceTo = (width + height) * 0.06; // Tính toán kích thước chữ cho màn hình nhỏ
+        fontSizeScore = (width + height) * 0.003; // Tính toán kích thước chữ cho màn hình nhỏ
+        fontSizeRaceTo = (width + height) * 0.1; // Tính toán kích thước chữ cho màn hình nhỏ
         fontSizeAll = (width + height) * 0.08;
         fontSizeName = (width + height) * 0.01;
     } else {
         fontSizeScore = (width + height) * 0.03; // Tính toán kích thước chữ cho màn hình lớn
-        fontSizeRaceTo = (width + height) * 0.8; // Tính toán kích thước chữ cho màn hình lớn
+        fontSizeRaceTo = (width + height) * 0.1; // Tính toán kích thước chữ cho màn hình lớn
         fontSizeAll = (width + height) * 0.007;
         fontSizeName = (width + height) * 0.02;
     }
@@ -337,7 +337,7 @@ const Pool = ({ route }) => {
                             <View style={styles.footer1}>
                                 <View style={styles.itemcon2}>
                                     <View style={styles.seconds}>
-                                        <Text style={[styles.text, { fontSize: fontSizeAll }]}>{progress}</Text>
+                                        <Text style={[styles.text, { fontSize: fontSizeName }]}>{progress}</Text>
                                     </View>
                                 </View>
                                 <View style={styles.itemcon3}>
