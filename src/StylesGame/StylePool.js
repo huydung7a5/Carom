@@ -29,12 +29,10 @@ export const styles = StyleSheet.create({
     },
     txtraceto: {
         color: "white",
-        fontSize: 70,
         fontWeight: "bold"
     },
     txtraceto1: {
         color: "yellow",
-        fontSize: 70,
         fontWeight: "bold"
     },
     itemcon2: {
@@ -127,7 +125,6 @@ export const styles = StyleSheet.create({
     },
     txtbtn: {
         color: "white",
-        fontSize: 18,
         fontWeight: "bold",
     },
     txtbtn1: {
@@ -237,13 +234,11 @@ export const styles = StyleSheet.create({
     },
     txtbodydiem: {
         color: "#FFFFFF",
-        fontSize: 150,
         fontWeight: "bold",
         textAlign: "center",
     },
     txtbodydiem1: {
         color: "#fe0000",
-        fontSize: 150,
         fontWeight: "bold",
     },
     footeritem: {
