@@ -10,7 +10,7 @@ import SettingLib from '../SettingGame/SettingLib';
 import Libre from '../Game/Libre';
 import SettingLib4 from '../SettingGame/SettingLib4';
 import Libre4 from '../Game/Libre4';
-
+import Settingdate from '../SettingGame/Settingdate';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const HomeStack = () => {
@@ -25,6 +25,7 @@ const NewNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Settingdate" component={Settingdate} ></Stack.Screen>
         <Stack.Screen name="Setting" component={Setting} ></Stack.Screen>
         <Tab.Screen name="SettingLib" component={SettingLib} />
 
