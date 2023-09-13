@@ -5,7 +5,6 @@ import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 
 
 const SettingLib = (props, route) => {
-  StatusBar.setHidden(true);
   const [text1, setText1] = useState('');
   const [text2, setText2] = useState('');
   const [second, setsecond] = useState('');
@@ -15,8 +14,27 @@ const SettingLib = (props, route) => {
   const [imageSource1, setImageSource1] = useState(null);
   const [imageSource2, setimageSource2] = useState(null);
   const [tongluotco, settongluotco] = useState('');
+  const [newsDetail, setNewsDetail] = useState(null);
   StatusBar.setHidden(true);
-  const { navigation } = props;
+
+
+  const { navigation, route } = props;
+  const { id } = route?.params;
+  const onGetNewsDetail = async (id) => {
+    if (!id) return;
+    const data = await AxiosInstance().get(`/${id}/date `);
+    setNewsDetail(data[0]);
+  }
+  useEffect(() => {
+    onGetNewsDetail();
+  }, [id]);
+  if (!newsDetail) {
+    return <Text>Loading...</Text>
+  }
+
+
+
+
   const Start = () => {
     if (text1 === '' || text2 === '' || second === '' || raceto === '' || secondthem === '' || tongluotco === '') {
       alert('Không được để trống thông tin');

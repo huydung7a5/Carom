@@ -39,7 +39,6 @@ import React from 'react'
     },
     txtitemcong: {
         color: "yellow",
-        fontSize: 30,
         fontWeight: "bold",
     },
     navitem: {
@@ -102,7 +101,6 @@ import React from 'react'
     },
     txtbangdiem: {
         color: "#1bf526",
-        fontSize: 32,
         fontWeight: "bold",
     },
     bodyicon111: {
@@ -134,12 +132,10 @@ import React from 'react'
     },
     txtbtn: {
         color: "white",
-        fontSize: 18,
         fontWeight: "bold",
     },
     txtbtn1: {
         color: "red",
-        fontSize: 18,
         fontWeight: "bold",
     },
     pr1: {
@@ -185,12 +181,10 @@ import React from 'react'
     },
     txtraceto: {
         color: "white",
-        fontSize: 50,
         fontWeight: "bold"
     },
     txtraceto1: {
         color: "yellow",
-        fontSize: 50,
         fontWeight: "bold"
     },
     itemcon2: {
@@ -263,7 +257,6 @@ import React from 'react'
         justifyContent: "center",
     },
     text: {
-        fontSize: 30,
         color: 'black',
         alignItems: 'center',
         fontWeight: 'bold',
@@ -356,7 +349,6 @@ import React from 'react'
     },
     txtnavdiem: {
         color: "#01f406",
-        fontSize: 40,
         fontWeight: "bold",
         textAlign: "center",
     },
@@ -368,20 +360,17 @@ import React from 'react'
     },
     icon: {
         color: "white",
-        fontSize: 20,
         fontWeight: "bold",
         textAlign: "center",
         marginTop: "-17%",
     },
     txtbodydiem: {
         color: "#FFFFFF",
-        fontSize: 150,
         fontWeight: "bold",
         textAlign: "center",
     },
     txtbodydiem1: {
         color: "#fe0000",
-        fontSize: 150,
         fontWeight: "bold",
     },
     footeritem: {
@@ -402,7 +391,6 @@ import React from 'react'
     },
     txtname1: {
         color: "#1bf526",
-        fontSize: 30,
         fontWeight: "bold",
         width: "60%",
         textAlign: "right",

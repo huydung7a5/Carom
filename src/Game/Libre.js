@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, Pressable, Image, StatusBar, TouchableOpacity, Alert, BackHandler } from 'react-native';
+import { View, Text, Button, StyleSheet, Pressable, Image, StatusBar, TouchableOpacity, Alert, BackHandler, Dimensions } from 'react-native';
 import { styles } from '../StylesGame/StyleLib'
 const Libre = ({ route, navigation }) => {
     const { text2, text1, second, raceto, imageSource, imageSource1, imageSource2, secondthem, tongluotco } = route.params;
@@ -453,12 +453,35 @@ const Libre = ({ route, navigation }) => {
         setdiemcaonhat1(Math.max(diemcaonhat1, player2Score));
 
     }
+    const { width, height } = Dimensions.get('window');
+    let fontSizeScore;
+    let fontSizeRaceTo;
+    let fontSizeAll;
+    let fontSizeName;
+    let fontSizeAvg;
+    let fontSizeIcon;
+
+    if (width < 400) {
+        fontSizeScore = (width + height) * 0.003; // Tính toán kích thước chữ cho màn hình nhỏ
+        fontSizeRaceTo = (width + height) * 0.09; // Tính toán kích thước chữ cho màn hình nhỏ
+        fontSizeAll = (width + height) * 0.08;
+        fontSizeName = (width + height) * 0.02;
+        fontSizeAvg = (width + height) * 0.015;
+        fontSizeIcon = (width + height) * 0.01;
+    } else {
+        fontSizeScore = (width + height) * 0.03; // Tính toán kích thước chữ cho màn hình lớn
+        fontSizeRaceTo = (width + height) * 0.09; // Tính toán kích thước chữ cho màn hình lớn
+        fontSizeAll = (width + height) * 0.007;
+        fontSizeName = (width + height) * 0.02;
+        fontSizeAvg = (width + height) * 0.015;
+        fontSizeIcon = (width + height) * 0.01;
+    }
     return (
         <View style={{ backgroundColor: "#454b61", width: "100%", height: "100%" }}>
             <View style={styles.title}>
                 <View style={styles.titleitem}>
                     <View style={styles.item1}>
-                        <Text style={styles.txtname1}>{text1}</Text>
+                        <Text style={[styles.txtname1, { fontSize: fontSizeName }]}>{text1}</Text>
                         <Image style={(imageSource === null ? styles.img : styles.img2)} source={{ uri: imageSource }} />
                     </View>
                     <View style={styles.item}>
@@ -468,7 +491,7 @@ const Libre = ({ route, navigation }) => {
                     </View>
                     <View style={styles.item1}>
                         <Image style={(imageSource1 === null ? styles.img : styles.img2)} source={{ uri: imageSource1 }} />
-                        <Text style={styles.txtname}>{text2}</Text>
+                        <Text style={[styles.txtname, { fontSize: fontSizeName }]}>{text2}</Text>
                     </View>
                 </View>
             </View>
@@ -477,20 +500,20 @@ const Libre = ({ route, navigation }) => {
                     <Pressable style={styles.bodyitemcon} onPress={() => handleItemClick("player1")}>
                         <View style={(color2 === true ? styles.ischeked : styles.checked)}>
                             <View style={styles.view123}>
-                                <Text style={(color2 === true ? styles.txtbodydiem : styles.txtbodydiem1)}>{totallayer1}</Text>
+                                <Text style={[(color2 === true ? styles.txtbodydiem : styles.txtbodydiem1), { fontSize: fontSizeRaceTo }]}>{totallayer1}</Text>
                             </View>
                             <View style={styles.bodyviewicon}>
                                 <View style={styles.bodyvieicon1}>
                                     <View style={styles.bodyicon1}>
                                         <View style={styles.bodyicon11}>
                                             <TouchableOpacity style={styles.navpr} onPressOut={handlePressOut} onPress={congplayer1} onPressIn={() => handleAddScore('player1')}>
-                                                <Text style={styles.icon}>+</Text>
+                                                <Text style={[styles.icon, { fontSize: fontSizeIcon }]}>+</Text>
                                             </TouchableOpacity>
                                             <View style={{ width: "40%", justifyContent: "center", height: "100%" }}>
-                                                <Text style={styles.txtnavdiem}>{player1Score}</Text>
+                                                <Text style={[styles.txtnavdiem, { fontSize: fontSizeAvg }]}>{player1Score}</Text>
                                             </View>
                                             <TouchableOpacity style={styles.navpr} onPress={() => handleMinusScore('player1')}>
-                                                <Text style={styles.icon}>-</Text>
+                                                <Text style={[styles.icon, { fontSize: fontSizeIcon }]}>-</Text>
                                             </TouchableOpacity>
                                         </View>
                                     </View>
@@ -499,12 +522,12 @@ const Libre = ({ route, navigation }) => {
                                             width: "100%", height: "73%", justifyContent: "center", alignItems: "center", borderColor: "#1bf526",
                                             borderRightWidth: 1,
                                         }}>
-                                            <Text style={styles.txtbangdiem}>{diemcaonhat}</Text>
+                                            <Text style={[styles.txtbangdiem, { fontSize: fontSizeAvg }]}>{diemcaonhat}</Text>
                                         </View>
                                     </View>
                                     <View style={styles.bodyicon111}>
                                         <View style={{ width: "100%", height: "100%", justifyContent: "center", alignItems: "center" }}>
-                                            <Text style={styles.txtbangdiem}>{avg1}</Text>
+                                            <Text style={[styles.txtbangdiem, { fontSize: fontSizeAvg }]}>{avg1}</Text>
                                         </View>
                                     </View>
                                 </View>
@@ -526,33 +549,33 @@ const Libre = ({ route, navigation }) => {
                     <View style={styles.bodyitemconv4}>
                         <View style={styles.bodyitemconv1}>
                             <View style={styles.bodyitemconv2}>
-                                <Text style={styles.txtraceto}>{raceto}</Text>
+                                <Text style={[styles.txtraceto, { fontSize: fontSizeScore }]}>{raceto}</Text>
                             </View>
                             <View style={styles.bodyitemconv2}>
-                                <Text style={styles.txtraceto}>{tongluotco}</Text>
+                                <Text style={[styles.txtraceto, { fontSize: fontSizeScore }]}>{tongluotco}</Text>
                             </View>
                         </View>
                         <View style={styles.viewsetin}>
-                            <Text style={styles.txtraceto1}>{setInn}</Text>
+                            <Text style={[styles.txtraceto1, { fontSize: fontSizeScore }]}>{setInn}</Text>
                         </View>
                     </View>
                     <Pressable style={styles.bodyitemcon} onPress={() => handleItemClick("player2")}>
                         <View style={(color1 === true ? styles.ischeked : styles.checked)}>
                             <View style={styles.view123}>
-                                <Text style={(color1 === true ? styles.txtbodydiem : styles.txtbodydiem1)}>{totallayer2}</Text>
+                                <Text style={[(color1 === true ? styles.txtbodydiem : styles.txtbodydiem1), { fontSize: fontSizeRaceTo }]}>{totallayer2}</Text>
                             </View>
                             <View style={styles.bodyviewicon}>
                                 <View style={styles.bodyvieicon1}>
                                     <View style={styles.bodyicon1}>
                                         <View style={styles.bodyicon11}>
                                             <TouchableOpacity style={styles.navpr} onPressOut={handlePressOut} onPress={congplayer2} onPressIn={() => handleAddScore('player2')}>
-                                                <Text style={styles.icon}>+</Text>
+                                                <Text style={[styles.icon, { fontSize: fontSizeIcon }]}>+</Text>
                                             </TouchableOpacity>
                                             <View style={{ width: "40%", justifyContent: "center", height: "100%" }}>
-                                                <Text style={styles.txtnavdiem}>{player2Score}</Text>
+                                                <Text style={[styles.txtnavdiem, { fontSize: fontSizeAvg }]}>{player2Score}</Text>
                                             </View>
                                             <TouchableOpacity style={styles.navpr} onPress={() => handleMinusScore('player2')}>
-                                                <Text style={styles.icon}>-</Text>
+                                                <Text style={[styles.icon, { fontSize: fontSizeIcon }]}>-</Text>
                                             </TouchableOpacity>
                                         </View>
                                     </View>
@@ -561,12 +584,12 @@ const Libre = ({ route, navigation }) => {
                                             width: "100%", height: "73%", justifyContent: "center", alignItems: "center", borderColor: "#1bf526",
                                             borderRightWidth: 1,
                                         }}>
-                                            <Text style={styles.txtbangdiem}>{diemcaonhat1}</Text>
+                                            <Text style={[styles.txtbangdiem, { fontSize: fontSizeAvg }]}>{diemcaonhat1}</Text>
                                         </View>
                                     </View>
                                     <View style={styles.bodyicon111}>
                                         <View style={{ width: "100%", height: "100%", justifyContent: "center", alignItems: "center" }}>
-                                            <Text style={styles.txtbangdiem}>{avg2}</Text>
+                                            <Text style={[styles.txtbangdiem, { fontSize: fontSizeAvg }]}>{avg2}</Text>
                                         </View>
                                     </View>
                                 </View>
@@ -593,7 +616,7 @@ const Libre = ({ route, navigation }) => {
                     <View style={styles.navitemcon}>
                         <View style={styles.viewne}>
                             {isVisible && <TouchableOpacity style={styles.navitemconv5} isVisible onPress={handlethemluot} >
-                                <Text style={styles.txtitemcong}>+1</Text>
+                                <Text style={[styles.txtitemcong, { fontSize: fontSizeName }]}>+1</Text>
                             </TouchableOpacity>}
                         </View>
 
@@ -602,7 +625,7 @@ const Libre = ({ route, navigation }) => {
                         </View>
                         <View style={styles.viewne}>
                             {isVisible1 && <TouchableOpacity style={styles.navitemconv2} onPress={handlethemluot1}>
-                                <Text style={styles.txtitemcong}>+2</Text>
+                                <Text style={[styles.txtitemcong, { fontSize: fontSizeName }]}>+2</Text>
                             </TouchableOpacity>}
                         </View>
                     </View>
@@ -614,7 +637,7 @@ const Libre = ({ route, navigation }) => {
                     <View style={styles.navitemcon}>
                         <View style={styles.viewne}>
                             {isVisible2 && <TouchableOpacity style={styles.navitemconv5} onPress={handlethemluot2}>
-                                <Text style={styles.txtitemcong}>+1</Text>
+                                <Text style={[styles.txtitemcong, { fontSize: fontSizeName }]}>+1</Text>
                             </TouchableOpacity>}
                         </View>
                         <View style={styles.navconv2}>
@@ -622,7 +645,7 @@ const Libre = ({ route, navigation }) => {
                         </View>
                         <View style={styles.viewne}>
                             {isVisible3 && <TouchableOpacity style={styles.navitemconv2} onPress={handlethemluot3}>
-                                <Text style={styles.txtitemcong}>+2</Text>
+                                <Text style={[styles.txtitemcong, { fontSize: fontSizeName }]}>+2</Text>
                             </TouchableOpacity>}
                         </View>
                     </View>
@@ -635,21 +658,21 @@ const Libre = ({ route, navigation }) => {
                             <View style={styles.itemitem}>
                                 <View style={styles.itemitemcon}>
                                     <TouchableOpacity style={styles.pr1} onPress={handleStart} disabled={disabled1}>
-                                        <Text style={(disabled1 === true ? styles.txtbtn1 : styles.txtbtn)}>
+                                        <Text style={[(disabled1 === true ? styles.txtbtn1 : styles.txtbtn), { fontSize: fontSizeAll }]}>
                                             Bắt đầu
                                         </Text>
                                     </TouchableOpacity>
                                 </View>
                                 <View style={styles.itemitemcon} >
                                     <TouchableOpacity style={styles.pr1} onPress={handlePause}>
-                                        <Text style={(paused === true ? styles.txtbtn1 : styles.txtbtn)}>
+                                        <Text style={[(paused === true ? styles.txtbtn1 : styles.txtbtn), { fontSize: fontSizeAll }]}>
                                             Tạm dừng
                                         </Text>
                                     </TouchableOpacity>
                                 </View>
                                 <View style={styles.itemitemcon}>
                                     <TouchableOpacity style={styles.pr1} onPress={handleResume}>
-                                        <Text style={styles.txtbtn}>
+                                        <Text style={[styles.txtbtn, { fontSize: fontSizeAll }]}>
                                             Tiếp tục
                                         </Text>
                                     </TouchableOpacity>
@@ -658,14 +681,14 @@ const Libre = ({ route, navigation }) => {
                             <View style={styles.itemitem}>
                                 <View style={styles.itemitemcon}>
                                     <TouchableOpacity style={styles.pr1} onPress={handlechuyenluot}>
-                                        <Text style={styles.txtbtn}>
+                                        <Text style={[styles.txtbtn, { fontSize: fontSizeAll }]}>
                                             Chuyển lượt
                                         </Text>
                                     </TouchableOpacity>
                                 </View>
                                 <View style={styles.itemitemcon}>
                                     <TouchableOpacity style={styles.pr1} onPress={themluot}>
-                                        <Text style={styles.txtbtn}>
+                                        <Text style={[styles.txtbtn, { fontSize: fontSizeAll }]}>
                                             Thêm lượt
                                         </Text>
                                     </TouchableOpacity>
@@ -683,7 +706,7 @@ const Libre = ({ route, navigation }) => {
                             <View style={styles.footer1}>
                                 <View style={styles.itemcon2}>
                                     <View style={styles.seconds}>
-                                        <Text style={styles.text}>{progress}</Text>
+                                        <Text style={[styles.text, { fontSize: fontSizeName }]}>{progress}</Text>
                                     </View>
                                 </View>
                                 <View style={styles.itemcon3}>
