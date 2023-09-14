@@ -2,6 +2,7 @@ import { StyleSheet, Text, onPress, Number, View, TextInput, TouchableOpacity, P
 import React, { useState, useCallback } from 'react'
 import { Picker } from '@react-native-picker/picker';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { RNCamera } from 'react-native-camera';
 
 
 const SettingLib = (props) => {
