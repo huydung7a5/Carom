@@ -2,9 +2,10 @@ import { StyleSheet, Text, View, Dimensions, FlatList, Pressable, StatusBar, Tou
 import React, { useState, useEffect } from 'react'
 import { getdate } from '../AxiosIntance/NewNavigation';
 import AxiosInstance from '../AxiosIntance/AxiosInstance';
-const Settingdate1 = (props) => {
+const Settingdate = (props) => {
     const { navigation } = props;
     const { width, height } = Dimensions.get('window');
+    const [iddate, setiddate] = useState('');
     let fontSizeScore;
     StatusBar.setHidden(true);
     const [news, setNews] = useState([]);
@@ -19,7 +20,7 @@ const Settingdate1 = (props) => {
     useEffect(() => {
         ongetdate();
     }, []);
-
+   
 
 
     if (width < 400) {
@@ -34,8 +35,9 @@ const Settingdate1 = (props) => {
         fontSizeName = (width + height) * 0.02;
     }
     const renderItem = ({ item }) => {
+        setiddate(item._id);
         return (
-            <TouchableOpacity onPress={() => navigation.navigate('SettingLib', { id: item._id })}>
+            <TouchableOpacity onPress={() => navigation.navigate('SettingLib', {iddate})}>
                 <View style={{ width: "100%", height: "auto", alignItems: "center" }}>
                     <View style={styles.viewdate}>
                         <Text style={[styles.txtdate, { fontSize: fontSizeScore }]}>Lịch thi đấu ngày: {item.date}</Text>
@@ -46,7 +48,7 @@ const Settingdate1 = (props) => {
         )
     }
     return (
-        <View style={{ width: "100%", height: "100%", marginTop:"5%" }}>
+        <View style={{ width: "100%", height: "100%", marginTop: "5%" }}>
             <View style={styles.title}>
                 <View style={styles.viewtitle}>
                     <Text style={[styles.txtdate1, { fontSize: fontSizeName }]}>Chọn ngày thi đấu</Text>
@@ -63,7 +65,7 @@ const Settingdate1 = (props) => {
     )
 }
 
-export default Settingdate1
+export default Settingdate
 
 const styles = StyleSheet.create({
     txtdate: {

@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, Button, StyleSheet, Pressable, Image, StatusBar, TouchableOpacity, Alert, BackHandler, Dimensions } from 'react-native';
 import { styles } from '../StylesGame/StyleLib'
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import {RNCamera} from 'react-native-camera';
 const Libre = ({ route, navigation }) => {
     const { text2, text1, second, raceto, imageSource, imageSource1, imageSource2, secondthem, tongluotco } = route.params;
     const [player1Score, setPlayer1Score] = useState(0);
@@ -32,6 +34,32 @@ const Libre = ({ route, navigation }) => {
     const avg1 = (parseInt(totallayer1) / parseInt(setInn)).toFixed(3);
     const avg2 = (parseInt(totallayer2) / parseInt(setInn)).toFixed(3);
     StatusBar.setHidden(true);
+
+    const launchCamera = () => {
+        const options = {
+          storageOptions: {
+            skipBackup: true,
+            path: 'images',
+          },
+        };
+    
+        launchCamera(options, (response) => {
+          if (response.didCancel) {
+            console.log('User cancelled image picker');
+          } else if (response.error) {
+            console.log('ImagePicker Error: ', response.error);
+          } else if (response.customButton) {
+            console.log('User tapped custom button: ', response.customButton);
+          } else {
+            const uri = response.uri;
+            setImageUri(uri);
+          }
+        });
+      };
+
+
+
+
     useEffect(() => {
         const backAction = () => {
             Alert.alert("Thông báo", "Bạn có chắc muốn thoát khỏi màn hình này, điều này sẽ mất dữ liệu", [
@@ -234,7 +262,6 @@ const Libre = ({ route, navigation }) => {
                 setIsActive(false);
                 setPaused(true);
                 return;
-
             } else if ((totallayer1 + player1Score) === (totallayer2 + player2Score)) {
                 Alert.alert('Hòa');
                 setIsActive(false);
@@ -469,7 +496,7 @@ const Libre = ({ route, navigation }) => {
         fontSizeAvg = (width + height) * 0.015;
         fontSizeIcon = (width + height) * 0.01;
     } else {
-        fontSizeScore = (width + height) * 0.03; // Tính toán kích thước chữ cho màn hình lớn
+        fontSizeScore = (width + height) * 0.02; // Tính toán kích thước chữ cho màn hình lớn
         fontSizeRaceTo = (width + height) * 0.09; // Tính toán kích thước chữ cho màn hình lớn
         fontSizeAll = (width + height) * 0.007;
         fontSizeName = (width + height) * 0.02;
@@ -552,11 +579,16 @@ const Libre = ({ route, navigation }) => {
                                 <Text style={[styles.txtraceto, { fontSize: fontSizeScore }]}>{raceto}</Text>
                             </View>
                             <View style={styles.bodyitemconv2}>
+                                <Text style={[styles.txtraceto1, { fontSize: fontSizeScore }]}>{setInn}</Text>
+                            </View>
+                            <View style={styles.bodyitemconv2}>
                                 <Text style={[styles.txtraceto, { fontSize: fontSizeScore }]}>{tongluotco}</Text>
                             </View>
                         </View>
                         <View style={styles.viewsetin}>
-                            <Text style={[styles.txtraceto1, { fontSize: fontSizeScore }]}>{setInn}</Text>
+                            <Pressable onPress={launchCamera}>
+                                <Text style={[styles.txtraceto1, { fontSize: fontSizeAll }]}>Bật camera</Text>
+                            </Pressable>
                         </View>
                     </View>
                     <Pressable style={styles.bodyitemcon} onPress={() => handleItemClick("player2")}>

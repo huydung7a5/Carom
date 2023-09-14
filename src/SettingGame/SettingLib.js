@@ -1,10 +1,10 @@
 import { StyleSheet, Text, onPress, Number, View, TextInput, TouchableOpacity, Pressable, StatusBar, Image } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Picker } from '@react-native-picker/picker';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 
 
-const SettingLib = (props, route) => {
+const SettingLib = (props) => {
   const [text1, setText1] = useState('');
   const [text2, setText2] = useState('');
   const [second, setsecond] = useState('');
@@ -17,22 +17,10 @@ const SettingLib = (props, route) => {
   const [newsDetail, setNewsDetail] = useState(null);
   StatusBar.setHidden(true);
 
-
   const { navigation, route } = props;
-  const { id } = route?.params;
-  const onGetNewsDetail = async (id) => {
-    if (!id) return;
-    const data = await AxiosInstance().get(`/${id}/date `);
-    setNewsDetail(data[0]);
-  }
-  useEffect(() => {
-    onGetNewsDetail();
-  }, [id]);
-  if (!newsDetail) {
-    return <Text>Loading...</Text>
-  }
 
-
+  // const { iddate } = route.params;
+  // console.log(iddate);
 
 
   const Start = () => {
@@ -46,22 +34,39 @@ const SettingLib = (props, route) => {
       navigation.navigate('Libre', { text1, text2, second, raceto, imageSource, imageSource1, secondthem, imageSource2, tongluotco });
     }
   }
+  // const takePhoto = useCallback(async (response) => {
+  //   if (response.didCancel) return;
+  //   if (response.errorCode) return;
+  //   if (response.errorMessage) return;
+  //   if (response.assets && response.assets.length > 0) {
+  //     const asset = response.assets[0];
+
+  //   setModalVisible(false);
+  // upload image
+  // const formData = new FormData();
+  // formData.append('image', {
+  //   uri: asset.uri,
+  //   type: asset.type,
+  //   name: asset.fileName,
+  // });
+  // const data = await uploadImage(formData);
+  // setImagePath(data.path);
+  //   }
+  // }, []);
+
   const layanh = () => {
-    let options = {
-      storageOptions: {
-        path: 'images',
-      }
-    }
-    launchImageLibrary(options, response => {
+    launchCamera({ mediaType: 'photo' }, (response) => {
       if (response.didCancel) {
         return;
       } else if (response.error) {
         return;
       } else {
+     //   const uri = response.uri;
         setImageSource(response.assets[0].uri);
       }
     });
   }
+
   const layanh2 = () => {
     launchImageLibrary({ mediaType: 'photo' }, (response) => {
       if (response.didCancel) {

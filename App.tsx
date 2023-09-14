@@ -24,10 +24,8 @@ function App(): JSX.Element {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <NewNavigator />
-      {/* <MyComponent /> */}
+      {/* <MyComponent></MyComponent> */}
     </SafeAreaView>
   );
 }
-
-
 export default App;

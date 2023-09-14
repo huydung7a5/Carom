@@ -447,7 +447,7 @@ import React from 'react'
     },
     bodyitemconv2: {
         backgroundColor: "#252a40",
-        width: "49%",
+        width: "35%",
         margin: "6%",
         height: "90%",
         justifyContent: "center",
@@ -460,7 +460,7 @@ import React from 'react'
         alignItems: "center",
         flexDirection: "row",
         width: "80%",
-        height: "50%",
+        height: "30%",
         justifyContent: "space-evenly",
     },
     bodyitemconv4: {
