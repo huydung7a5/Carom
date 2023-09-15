@@ -10,6 +10,7 @@ const MyComponent = () => {
     checkPermission()
   }, [])
   const checkPermission = async () => {
+    const deviceType = parsePhysicalDeviceTypes(device.devices)
     const newCameraPermission = await Camera.requestCameraPermission()
     const newMicrophonePermission = await Camera.requestMicrophonePermission()
   };
@@ -22,6 +23,7 @@ const MyComponent = () => {
       onRecordingError: (error) => console.error(error),
     })
   }
+
   const stopRecoding = async () => {
     if (cameraRef.current) {
       cameraRef.current.stopRecording()
@@ -38,10 +40,10 @@ const MyComponent = () => {
         </TouchableOpacity>
       </View>
       <Camera
-        video={true}
+        audio={true} // <-- optional
         device={device}
         isActive={true}
-        ref={cameraRef} style={{ width: "50%", height:"70%",aspectRatio: 1 }}
+        ref={cameraRef} style={{ width: "50%", height: "70%", aspectRatio: 1 }}
       />
 
 
