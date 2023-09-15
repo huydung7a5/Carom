@@ -1,10 +1,11 @@
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
+import { ActivityIndicator, Button, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import React, { useEffect, useRef } from 'react'
 import { Camera, useCameraDevices } from 'react-native-vision-camera'
 
 const MyComponent = () => {
-  const devices = useCameraDevices();
+  const devices = useCameraDevices()
   const device = devices.back
+  const cameraRef = useRef(null)
   useEffect(() => {
     checkPermission()
   }, [])
@@ -14,13 +15,36 @@ const MyComponent = () => {
   };
   if (device == null) return <ActivityIndicator />
 
+  const startRecoding = async () => {
+    cameraRef.current.startRecording({
+      flash: 'on',
+      onRecordingFinished: (video) => console.log(video),
+      onRecordingError: (error) => console.error(error),
+    })
+  }
+  const stopRecoding = async () => {
+    if (cameraRef.current) {
+      cameraRef.current.stopRecording()
+    }
+  }
   return (
-    <View style={{ flex: 1 }}>
+    <View >
+      <View>
+        <TouchableOpacity onPress={startRecoding} >
+          <Text>Start</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={stopRecoding} >
+          <Text>Stop</Text>
+        </TouchableOpacity>
+      </View>
       <Camera
-        style={StyleSheet.absoluteFill}
+        video={true}
         device={device}
         isActive={true}
+        ref={cameraRef} style={{ width: 200, aspectRatio: 1 }}
       />
+
+
     </View>
   )
 }
