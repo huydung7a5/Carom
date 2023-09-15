@@ -41,7 +41,7 @@ const MyComponent = () => {
         video={true}
         device={device}
         isActive={true}
-        ref={cameraRef} style={{ width: 200, aspectRatio: 1 }}
+        ref={cameraRef} style={{ width: "50%", height:"70%",aspectRatio: 1 }}
       />
 
 
