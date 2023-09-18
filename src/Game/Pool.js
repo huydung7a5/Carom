@@ -6,8 +6,6 @@ const Pool = ({ route }) => {
     const { text2, text1, second, raceto, imageSource, imageSource1, secondthem } = route.params;
     const [player1Score, setPlayer1Score] = useState(0);
     const [player2Score, setPlayer2Score] = useState(0);
-    const [totallayer1, settotalplayer1] = useState(0);
-    const [totallayer2, settotalplayer2] = useState(0);
     const [color, setColor] = useState('green');
     const [color2, setColor2] = useState(true);
     const [color1, setColor1] = useState(true);
@@ -19,28 +17,31 @@ const Pool = ({ route }) => {
     const [isRunning, setIsRunning] = useState(true);
     const [isnum, setisnum] = useState(second);
     const [disabled1, setDisabled1] = useState(false);
-    // const [fontSize, setFontSize] = useState(190);
-    // const [fontSizeScore, setfontSizeScore] = useState(70);
+
+    const [fontSizeScore, setfontSizeScore] = useState();
+    const [fontSizeRaceTo, setfonsizeracto] = useState();
+    const [fontSizeAll, setfontsizeall] = useState();
+    const [fontSizeName, setfonsizename] = useState();
 
     StatusBar.setHidden(true);
 
-    const { width, height } = Dimensions.get('window');
-    let fontSizeScore;
-    let fontSizeRaceTo;
-    let fontSizeAll;
-    let fontSizeName;
+    useEffect(() => {
+        const { width, height } = Dimensions.get('window');
+        if (width < 400) {
+            setfontSizeScore((width + height) * 0.003); // Tính toán kích thước chữ cho màn hình nhỏ
+            setfonsizeracto((width + height) * 0.1); // Tính toán kích thước chữ cho màn hình nhỏ
+            setfontsizeall((width + height) * 0.01);
+            setfonsizename((width + height) * 0.01);
+        } else {
+            setfontSizeScore((width + height) * 0.003); // Tính toán kích thước chữ cho màn hình nhỏ
+            setfonsizeracto((width + height) * 0.1); // Tính toán kích thước chữ cho màn hình nhỏ
+            setfontsizeall((width + height) * 0.01);
+            setfonsizename((width + height) * 0.022);
+        }
 
-    if (width < 400) {
-        fontSizeScore = (width + height) * 0.003; // Tính toán kích thước chữ cho màn hình nhỏ
-        fontSizeRaceTo = (width + height) * 0.1; // Tính toán kích thước chữ cho màn hình nhỏ
-        fontSizeAll = (width + height) * 0.08;
-        fontSizeName = (width + height) * 0.01;
-    } else {
-        fontSizeScore = (width + height) * 0.03; // Tính toán kích thước chữ cho màn hình lớn
-        fontSizeRaceTo = (width + height) * 0.1; // Tính toán kích thước chữ cho màn hình lớn
-        fontSizeAll = (width + height) * 0.007;
-        fontSizeName = (width + height) * 0.02;
-    }
+
+    }, [fontSizeScore, fontSizeRaceTo, fontSizeAll, fontSizeName]);
+
     const handleAddScore = (player) => {
         switch (player) {
             case 'player1':
@@ -159,11 +160,14 @@ const Pool = ({ route }) => {
     const handlePause = () => {
         setPaused(true);
         setIsActive(false);
+        setIsRunning(true);
     };
+    const handleCamera = () => {
+        Alert.alert('Chức năng đang được phát triển');
+
+    }
     const handleResume = () => {
         if (check == null) {
-            return;
-        } else if (isRunning == true) {
             return;
         } else if (player1Score == raceto) {
             return;
@@ -253,36 +257,39 @@ const Pool = ({ route }) => {
                 <View style={styles.bodyitem}>
                     <TouchableOpacity style={styles.bodyitemcon} onPress={() => handleItemClick("player1")}>
                         <View style={(color2 === true ? styles.ischeked : styles.checked)}>
-                            <View>
+                            <View style={{ height: "80%", marginTop: "-3%" }}>
                                 <Text style={[(color2 === true ? styles.txtbodydiem : styles.txtbodydiem1), { fontSize: fontSizeRaceTo }]}>{player1Score}</Text>
                             </View>
                             <View style={styles.bodyicon}>
                                 <Pressable style={styles.bodypr} onPress={() => handleAddScore('player1')}>
-                                    <Text style={styles.icon}>+</Text>
+                                    <Text style={[styles.icon, { fontSize: fontSizeName }]}>+</Text>
                                 </Pressable>
                                 <Pressable style={styles.bodypr} onPress={() => handleMinusScore('player1')}>
-                                    <Text style={styles.icon}>-</Text>
+                                    <Text style={[styles.icon, { fontSize: fontSizeName }]}>-</Text>
                                 </Pressable>
                             </View>
                         </View>
                     </TouchableOpacity>
                     <View style={styles.bodyitemconv1}>
                         <View style={styles.bodyitemconv2}>
-                            <Text style={[styles.txtraceto, { fontSize: fontSizeScore }]}>Raceto</Text>
-                            <Text style={[styles.txtraceto1, { fontSize: fontSizeScore }]}>{raceto}</Text>
+                            <Text style={[styles.txtraceto, { fontSize: fontSizeName }]}>Raceto</Text>
+                            <Text style={[styles.txtraceto1, { fontSize: fontSizeName }]}>{raceto}</Text>
                         </View>
+                        <TouchableOpacity style={styles.viewcamera} onPress={handleCamera}>                          
+                                <Text style={[styles.txtraceto, { fontSize: fontSizeName }]}>Camera</Text>                     
+                        </TouchableOpacity>
                     </View>
                     <TouchableOpacity style={styles.bodyitemcon} onPress={() => handleItemClick("player2")}>
                         <View style={(color1 === true ? styles.ischeked : styles.checked)}>
-                            <View>
+                            <View style={{ height: "80%", marginTop: "-3%" }}>
                                 <Text style={[(color1 === true ? styles.txtbodydiem : styles.txtbodydiem1), { fontSize: fontSizeRaceTo }]}>{player2Score}</Text>
                             </View>
                             <View style={styles.bodyicon}>
                                 <Pressable style={styles.bodypr} onPress={() => handleAddScore('player2')}>
-                                    <Text style={styles.icon}>+</Text>
+                                    <Text style={[styles.icon, { fontSize: fontSizeName }]}>+</Text>
                                 </Pressable>
                                 <Pressable style={styles.bodypr} onPress={() => handleMinusScore('player2')}>
-                                    <Text style={styles.icon}>-</Text>
+                                    <Text style={[styles.icon, { fontSize: fontSizeName }]}>-</Text>
                                 </Pressable>
                             </View>
                         </View>
@@ -302,16 +309,20 @@ const Pool = ({ route }) => {
                         <View style={styles.footer2}>
                             <View style={styles.itemitem}>
                                 <View style={styles.itemitemcon} >
-                                    <TouchableOpacity style={styles.pr1} onPress={handlePause}>
+                                {!isRunning ?   ( <TouchableOpacity style={styles.pr1} onPress={handlePause}>
                                         <Text style={[(paused === true ? styles.txtbtn1 : styles.txtbtn), { fontSize: fontSizeAll }]}>
                                             Tạm dừng
                                         </Text>
-                                    </TouchableOpacity>
+                                    </TouchableOpacity> ) : ( <TouchableOpacity style={styles.pr1} onPress={handleResume}>
+                                        <Text style={[(paused === true ? styles.txtbtn1 : styles.txtbtn), { fontSize: fontSizeAll }]}>
+                                            Tiếp tục
+                                        </Text>
+                                    </TouchableOpacity> )}
                                 </View>
                                 <View style={styles.itemitemcon}>
-                                    <TouchableOpacity style={styles.pr1} onPress={handleResume}>
+                                    <TouchableOpacity style={styles.pr1} onPress={handlethemluot}>
                                         <Text style={[styles.txtbtn, { fontSize: fontSizeAll }]}>
-                                            Tiếp tục
+                                           Thêm thời gian
                                         </Text>
                                     </TouchableOpacity>
                                 </View>
@@ -333,16 +344,16 @@ const Pool = ({ route }) => {
                                 </View>
                             </View>
                         </View>
-                        <View style={styles.cooldow}>
-                            <View style={styles.footer1}>
-                                <View style={styles.itemcon2}>
-                                    <View style={styles.seconds}>
-                                        <Text style={[styles.text, { fontSize: fontSizeName }]}>{progress}</Text>
-                                    </View>
+                    </View>
+                    <View style={styles.cooldow}>
+                        <View style={styles.footer1}>
+                            <View style={styles.itemcon2}>
+                                <View style={styles.seconds}>
+                                    <Text style={[styles.text, { fontSize: fontSizeName }]}>{progress}</Text>
                                 </View>
-                                <View style={styles.itemcon3}>
-                                    <View style={[styles.progress1, { width: `${((parseInt(progress)) / (parseInt(isnum))) * 100}%`, backgroundColor: color }]}>
-                                    </View>
+                            </View>
+                            <View style={styles.itemcon3}>
+                                <View style={[styles.progress1, { width: `${((parseInt(progress)) / (parseInt(isnum))) * 100}%`, backgroundColor: color }]}>
                                 </View>
                             </View>
                         </View>

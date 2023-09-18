@@ -84,40 +84,42 @@ const Setting = (props, route) => {
         </View>
       </View>
       <View style={styles.thoigianthem}>
-        <View style={styles.item3}>
-          <View style={styles.pickeritem}>
-            <View style={styles.item4}>
-              <TextInput value={second} keyboardType="numeric" onChangeText={setsecond} style={styles.txtinput5} placeholder='Nhập thời gian ra cơ'></TextInput>
+        <View style={{ width: "90%", justifyContent: "space-evenly", flexDirection: "row" }}>
+          <View style={styles.item3}>
+            <View style={styles.pickeritem}>
+              <View style={styles.item4}>
+                <TextInput value={second} keyboardType="numeric" onChangeText={setsecond} style={styles.txtinput5} placeholder='Nhập thời gian ra cơ'></TextInput>
+              </View>
             </View>
           </View>
-        </View>
-        <View style={styles.item3}>
-          <View style={styles.pickeritem}>
-            <View style={styles.item4}>
-              <TextInput value={secondthem} keyboardType="numeric" onChangeText={setsecondthem} style={styles.txtinput5} placeholder='Xin thêm thời gian'></TextInput>
+          <View style={styles.item3}>
+            <View style={styles.pickeritem}>
+              <View style={styles.item4}>
+                <TextInput value={secondthem} keyboardType="numeric" onChangeText={setsecondthem} style={styles.txtinput5} placeholder='Xin thêm thời gian'></TextInput>
+              </View>
             </View>
           </View>
-        </View>
-        <View style={styles.item3}>
-          <View style={styles.pickeritem}>
-            <View style={styles.item4}>
-              <TextInput value={raceto} keyboardType="numeric" onChangeText={setraceto} style={styles.txtinput5} placeholder='Nhập Số Race To'></TextInput>
+          <View style={styles.item3}>
+            <View style={styles.pickeritem}>
+              <View style={styles.item4}>
+                <TextInput value={raceto} keyboardType="numeric" onChangeText={setraceto} style={styles.txtinput5} placeholder='Nhập Số Race To'></TextInput>
+              </View>
             </View>
           </View>
         </View>
       </View>
-      <Pressable style={styles.pr} onPress={Start}>
-        <View style={styles.btnstart}>
+      <View style={styles.pr}>
+        <Pressable style={styles.btnstart} onPress={Start}>
           <Text style={styles.txtbtn}>Bắt Đầu</Text>
-        </View>
-      </Pressable>
+        </Pressable>
+      </View>
     </View>
   )
 }
 export default Setting
 const styles = StyleSheet.create({
   item4: {
-    width: "85%",
+    width: "100%",
     marginTop: "4%",
     alignItems: "center",
     height: '100%',
@@ -128,13 +130,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "red",
     height: '100%',
+    textAlign: "center",
+
   },
   thoigianthem: {
     width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     height: '13%',
-
+    alignItems: 'center'
   },
   img: {
     borderRadius: 10,
@@ -158,9 +162,8 @@ const styles = StyleSheet.create({
     width: '60%',
   },
   pickeritem: {
-    width: '70%',
+    width: '100%',
     marginTop: '-2%',
-    left: '70%',
   },
   pr: {
     marginTop: '4%',
@@ -191,7 +194,7 @@ const styles = StyleSheet.create({
   btnstart: {
     borderRadius: 10,
     backgroundColor: 'yellow',
-    width: '14%',
+    width: '18%',
     height: '7%',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -200,19 +203,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginTop: '-2%',
   },
-  txtitem3P: {
-    width: '50%',
-    fontSize: 20,
-    color: 'black',
-    fontWeight: 'bold',
-    marginLeft: '20%',
-  },
   item3: {
     marginTop: '2%',
-    marginLeft: '-3%',
-    width: '45%',
+    width: '30%',
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
     height: '40%',
   },
   txtinput1: {
@@ -220,6 +214,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "red",
+    textAlign: "center",
   },
   item2: {
     width: "30%",

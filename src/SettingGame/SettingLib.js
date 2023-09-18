@@ -62,7 +62,7 @@ const SettingLib = (props) => {
       } else if (response.error) {
         return;
       } else {
-     //   const uri = response.uri;
+        //   const uri = response.uri;
         setImageSource(response.assets[0].uri);
       }
     });
@@ -132,33 +132,35 @@ const SettingLib = (props) => {
         </View>
       </View>
       <View style={styles.thoigianthem}>
-        <View style={styles.item3}>
-          <View style={styles.pickeritem}>
-            <View style={styles.item4}>
-              <TextInput value={second} keyboardType="numeric" onChangeText={setsecond} style={styles.txtinput5} placeholder='Nhập thời gian ra cơ'></TextInput>
+        <View style={{ width: "90%", justifyContent: "space-evenly", flexDirection: "row" }}>
+          <View style={styles.item3}>
+            <View style={styles.pickeritem}>
+              <View style={styles.item4}>
+                <TextInput value={second} keyboardType="numeric" onChangeText={setsecond} style={styles.txtinput5} placeholder='Nhập thời gian ra cơ'></TextInput>
+              </View>
             </View>
           </View>
-        </View>
-        <View style={styles.item3}>
-          <View style={styles.pickeritem}>
-            <View style={styles.item4}>
-              <TextInput value={tongluotco} keyboardType="numeric" onChangeText={settongluotco} style={styles.txtinput5} placeholder='Tổng lượt cơ'></TextInput>
+          <View style={styles.item3}>
+            <View style={styles.pickeritem}>
+              <View style={styles.item4}>
+                <TextInput value={tongluotco} keyboardType="numeric" onChangeText={settongluotco} style={styles.txtinput5} placeholder='Tổng lượt cơ'></TextInput>
+              </View>
             </View>
           </View>
-        </View>
-        <View style={styles.item3}>
-          <View style={styles.pickeritem}>
-            <View style={styles.item4}>
-              <TextInput value={secondthem} keyboardType="numeric" onChangeText={setsecondthem} style={styles.txtinput5} placeholder='Xin thêm thời gian'></TextInput>
+          <View style={styles.item3}>
+            <View style={styles.pickeritem}>
+              <View style={styles.item4}>
+                <TextInput value={secondthem} keyboardType="numeric" onChangeText={setsecondthem} style={styles.txtinput5} placeholder='Xin thêm thời gian'></TextInput>
+              </View>
             </View>
           </View>
         </View>
       </View>
-      <Pressable style={styles.pr} onPress={Start}>
-        <View style={styles.btnstart}>
+      <View style={styles.pr}>
+        <Pressable style={styles.btnstart} onPress={Start}>
           <Text style={styles.txtbtn}>Bắt Đầu</Text>
-        </View>
-      </Pressable>
+        </Pressable>
+      </View>
     </View>
   )
 }
@@ -169,7 +171,6 @@ const styles = StyleSheet.create({
     marginTop: "4%",
     alignItems: "center",
     height: '100%',
-    justifyContent: 'center',
   },
   txtinput5: {
     width: "100%",
@@ -177,6 +178,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "red",
     height: '100%',
+    textAlign: "center",
+
   },
   thoigianthem: {
     width: '100%',
@@ -204,7 +207,6 @@ const styles = StyleSheet.create({
   pickeritem: {
     width: '100%',
     marginTop: '-2%',
-    justifyContent: 'center',
   },
   pr: {
     marginTop: '4%',
@@ -235,7 +237,7 @@ const styles = StyleSheet.create({
   btnstart: {
     borderRadius: 10,
     backgroundColor: 'yellow',
-    width: '14%',
+    width: '18%',
     height: '7%',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -253,9 +255,8 @@ const styles = StyleSheet.create({
   },
   item3: {
     marginTop: '2%',
-    width: '25%',
+    width: '30%',
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
     height: '40%',
   },
   item6: {
@@ -272,6 +273,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "red",
+    textAlign: "center",
   },
   item2: {
     width: "30%",

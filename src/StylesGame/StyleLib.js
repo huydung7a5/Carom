@@ -34,7 +34,6 @@ import React from 'react'
     },
     txtitemcong1: {
         color: "white",
-        fontSize: 20,
         fontWeight: "bold",
     },
     txtitemcong: {
@@ -50,7 +49,6 @@ import React from 'react'
     },
     txtInn: {
         color: "white",
-        fontSize: 40,
         fontWeight: "bold",
     },
     navitemconv3: {
@@ -459,8 +457,8 @@ import React from 'react'
     bodyitemconv1: {
         alignItems: "center",
         flexDirection: "row",
-        width: "80%",
-        height: "30%",
+        width: "100%",
+        height: "40%",
         justifyContent: "space-evenly",
     },
     bodyitemconv4: {

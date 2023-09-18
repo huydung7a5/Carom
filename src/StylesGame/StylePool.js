@@ -11,21 +11,21 @@ export const styles = StyleSheet.create({
     },
     bodypr: {
         backgroundColor: "#454b61",
-        width: "30%",
-        height: "60%",
-        justifyContent: "center",
+        width: "40%",
+        height: "100%",
         alignItems: "center",
-        borderRadius:10,
+        borderRadius: 10,
         borderWidth: 1,
-        borderColor: "white"
+        borderColor: "white",
+        justifyContent: "center",
+        borderWidth: 1,
     },
     bodyicon: {
         justifyContent: "space-evenly",
         flexDirection: "row",
         width: "100%",
         height: "20%",
-        marginTop: "3%",
-        alignItems: "center",
+        marginTop: "-10%",
     },
     txtraceto: {
         color: "white",
@@ -49,9 +49,10 @@ export const styles = StyleSheet.create({
     },
     itemfooter: {
         flexDirection: 'row',
-        width: '100%',
-        height: '100%',
-        justifyContent: 'center',
+        width: '50%',
+        height: '90%',
+        alignItems: 'center',
+        justifyContent: "center",
     },
 
     txt: {
@@ -90,9 +91,10 @@ export const styles = StyleSheet.create({
     },
     footer2: {
         alignItems: 'center',
-        width: '30%',
+        width: '70%',
         height: '70%',
         justifyContent: "center",
+
     },
     itemitemcon: {
         backgroundColor: "#252a40",
@@ -101,15 +103,15 @@ export const styles = StyleSheet.create({
     },
     itemitemcon1: {
         backgroundColor: "#252a40",
-        width: "20%",
+        width: "35%",
         borderRadius: 10,
-        height:"83%",
-        left:"15%"
+        height: "80%",
+        marginTop: "2%"
     },
 
     itemitem: {
-        width: "70%",
-        height: "50%",
+        width: "90%",
+        height: "60%",
         justifyContent: "space-around",
         flexDirection: "row",
         marginTop: "5%",
@@ -129,28 +131,23 @@ export const styles = StyleSheet.create({
     },
     txtbtn1: {
         color: "red",
-        fontSize: 18,
         fontWeight: "bold",
     },
     txtbtn2: {
         color: "white",
-        fontSize: 28,
         fontWeight: "bold",
     },
     txtbtn3: {
         color: "red",
-        fontSize: 28,
         fontWeight: "bold",
     },
     seconds: {
-        alignItems: 'center',
         width: "100%",
         height: "100%",
         alignItems: 'center',
         justifyContent: "center",
     },
     text: {
-        fontSize: 30,
         color: 'black',
         alignItems: 'center',
     },
@@ -225,12 +222,7 @@ export const styles = StyleSheet.create({
 
     icon: {
         color: "white",
-        fontSize: 40,
-        fontWeight: "bold",    
-        textAlign: "center",
-        alignItems: "center",
-        marginTop:"-5%"
-    
+        fontWeight: "bold",
     },
     txtbodydiem: {
         color: "#FFFFFF",
@@ -244,6 +236,8 @@ export const styles = StyleSheet.create({
     footeritem: {
         width: "100%",
         height: "100%",
+        justifyContent: "space-around",
+        flexDirection: "row",
     },
     footer: {
         marginTop: "3.5%",
@@ -269,7 +263,7 @@ export const styles = StyleSheet.create({
         height: "80%",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor:"white"
+        backgroundColor: "white"
     },
     navitemconv3: {
         width: "60%",
@@ -321,16 +315,26 @@ export const styles = StyleSheet.create({
     bodyitemconv2: {
         backgroundColor: "#252a40",
         width: "80%",
-        height: "60%",
+        height: "40%",
         justifyContent: "space-evenly",
         alignItems: "center",
-        borderWidth:1,
-        borderColor:"white",
-        borderRadius:50
+        borderWidth: 1,
+        borderColor: "white",
+        borderRadius: 50
+    },
+    viewcamera: {
+        backgroundColor: "#252a40",
+        width: "80%",
+        height: "50%",
+        textAlign: "center",
+        borderWidth: 1,
+        borderColor: "white",
+        borderRadius: 50,
+        justifyContent: "center",
+        alignItems: "center",
     },
     bodyitemconv1: {
         alignItems: "center",
-        flexDirection: "row",
         width: "30%",
         height: "100%",
         justifyContent: "space-evenly",
@@ -377,7 +381,7 @@ export const styles = StyleSheet.create({
     },
     item1: {
         width: "35%",
-        height: "40%",
+        height: "100%",
         justifyContent: "space-between",
         alignItems: "center",
         flexDirection: "row",
@@ -395,10 +399,11 @@ export const styles = StyleSheet.create({
         borderRadius: 50,
     },
     titleitem: {
+        marginTop: "2%",
         justifyContent: 'space-around',
         flexDirection: 'row',
         width: "95%",
-        height: "100%",
+        height: "60%",
         alignItems: "center",
     },
     title: {
@@ -408,10 +413,10 @@ export const styles = StyleSheet.create({
     }
 });
 const StylePool = () => {
-  return (
-    <View>
-    </View>
-  )
+    return (
+        <View>
+        </View>
+    )
 }
 
 export default StylePool

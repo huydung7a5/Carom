@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, Button, StyleSheet, Pressable, Image, StatusBar, TouchableOpacity, Alert, BackHandler, Dimensions } from 'react-native';
 import { styles } from '../StylesGame/StyleLib'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import {RNCamera} from 'react-native-camera';
 const Libre = ({ route, navigation }) => {
     const { text2, text1, second, raceto, imageSource, imageSource1, imageSource2, secondthem, tongluotco } = route.params;
     const [player1Score, setPlayer1Score] = useState(0);
@@ -35,27 +34,33 @@ const Libre = ({ route, navigation }) => {
     const avg2 = (parseInt(totallayer2) / parseInt(setInn)).toFixed(3);
     StatusBar.setHidden(true);
 
+    const [fontSizeScore, setfontSizeScore] = useState();
+    const [fontSizeRaceTo, setfonsizeracto] = useState();
+    const [fontSizeAll, setfontsizeall] = useState();
+    const [fontSizeName, setfonsizename] = useState();
+    const [fontSizeAvg, setfonsizesvg] = useState();
+    const [fontSizeIcon, setfonsizeicon] = useState();
     const launchCamera = () => {
         const options = {
-          storageOptions: {
-            skipBackup: true,
-            path: 'images',
-          },
+            storageOptions: {
+                skipBackup: true,
+                path: 'images',
+            },
         };
-    
+
         launchCamera(options, (response) => {
-          if (response.didCancel) {
-            console.log('User cancelled image picker');
-          } else if (response.error) {
-            console.log('ImagePicker Error: ', response.error);
-          } else if (response.customButton) {
-            console.log('User tapped custom button: ', response.customButton);
-          } else {
-            const uri = response.uri;
-            setImageUri(uri);
-          }
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            } else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+            } else if (response.customButton) {
+                console.log('User tapped custom button: ', response.customButton);
+            } else {
+                const uri = response.uri;
+                setImageUri(uri);
+            }
         });
-      };
+    };
 
 
 
@@ -480,29 +485,25 @@ const Libre = ({ route, navigation }) => {
         setdiemcaonhat1(Math.max(diemcaonhat1, player2Score));
 
     }
-    const { width, height } = Dimensions.get('window');
-    let fontSizeScore;
-    let fontSizeRaceTo;
-    let fontSizeAll;
-    let fontSizeName;
-    let fontSizeAvg;
-    let fontSizeIcon;
+    useEffect(() => {
+        const { width, height } = Dimensions.get('window');
+        if (width < 400) {
+            setfontSizeScore((width + height) * 0.02); // Tính toán kích thước chữ cho màn hình nhỏ
+            setfonsizeracto((width + height) * 0.09); // Tính toán kích thước chữ cho màn hình nhỏ
+            setfontsizeall((width + height) * 0.007);
+            setfonsizename((width + height) * 0.02);
+            setfonsizesvg((width + height) * 0.015);
+            setfonsizeicon((width + height) * 0.01);
+        } else {
+            setfontSizeScore((width + height) * 0.02); // Tính toán kích thước chữ cho màn hình nhỏ
+            setfonsizeracto((width + height) * 0.09); // Tính toán kích thước chữ cho màn hình nhỏ
+            setfontsizeall((width + height) * 0.007);
+            setfonsizename((width + height) * 0.02);
+            setfonsizesvg((width + height) * 0.015);
+            setfonsizeicon((width + height) * 0.01);
+        }
 
-    if (width < 400) {
-        fontSizeScore = (width + height) * 0.003; // Tính toán kích thước chữ cho màn hình nhỏ
-        fontSizeRaceTo = (width + height) * 0.09; // Tính toán kích thước chữ cho màn hình nhỏ
-        fontSizeAll = (width + height) * 0.08;
-        fontSizeName = (width + height) * 0.02;
-        fontSizeAvg = (width + height) * 0.015;
-        fontSizeIcon = (width + height) * 0.01;
-    } else {
-        fontSizeScore = (width + height) * 0.02; // Tính toán kích thước chữ cho màn hình lớn
-        fontSizeRaceTo = (width + height) * 0.09; // Tính toán kích thước chữ cho màn hình lớn
-        fontSizeAll = (width + height) * 0.007;
-        fontSizeName = (width + height) * 0.02;
-        fontSizeAvg = (width + height) * 0.015;
-        fontSizeIcon = (width + height) * 0.01;
-    }
+    }, [fontSizeScore, fontSizeRaceTo, fontSizeAll, fontSizeName]);
     return (
         <View style={{ backgroundColor: "#454b61", width: "100%", height: "100%" }}>
             <View style={styles.title}>
@@ -653,7 +654,7 @@ const Libre = ({ route, navigation }) => {
                         </View>
 
                         <View style={styles.navconv2}>
-                            <Text style={styles.txtitemcong1}>EXTENSION</Text>
+                            <Text style={[styles.txtitemcong1,{fontSize: fontSizeIcon}]}>EXTENSION</Text>
                         </View>
                         <View style={styles.viewne}>
                             {isVisible1 && <TouchableOpacity style={styles.navitemconv2} onPress={handlethemluot1}>
@@ -663,7 +664,7 @@ const Libre = ({ route, navigation }) => {
                     </View>
                     <View style={styles.navitemcon1}>
                         <View style={styles.navitemconv3}>
-                            <Text style={styles.txtInn}>Inn</Text>
+                            <Text style={[styles.txtInn,{fontSize: fontSizeScore}]}>Inn</Text>
                         </View>
                     </View>
                     <View style={styles.navitemcon}>
@@ -673,7 +674,7 @@ const Libre = ({ route, navigation }) => {
                             </TouchableOpacity>}
                         </View>
                         <View style={styles.navconv2}>
-                            <Text style={styles.txtitemcong1}>EXTENSION</Text>
+                        <Text style={[styles.txtitemcong1,{fontSize: fontSizeIcon}]}>EXTENSION</Text>
                         </View>
                         <View style={styles.viewne}>
                             {isVisible3 && <TouchableOpacity style={styles.navitemconv2} onPress={handlethemluot3}>
