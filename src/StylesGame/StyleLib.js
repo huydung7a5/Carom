@@ -4,6 +4,8 @@ import React from 'react'
     viewne: {
         width: "25%",
         height: "100%",
+        alignItems: "center",
+        justifyContent: "center",
     },
     navconv2: {
         width: "50%",
@@ -64,7 +66,7 @@ import React from 'react'
     },
     navitemcon: {
         width: "25%",
-        height: "70%",
+        height: "100%",
         justifyContent: "space-between",
         alignItems: "center",
         borderRadius: 30,
@@ -74,19 +76,16 @@ import React from 'react'
     },
     nav: {
         width: "100%",
-        height: "10%",
+        height: "9%",
+        marginTop: "0.5%",
         alignItems: "center",
         justifyContent: "center",
     },
     viewsetin: {
-        width: "45%",
-        height: "30%",
+        width: "60%",
+        height: "40%",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#252a40",
-        borderRadius: 45,
-        borderColor: "white",
-        borderWidth: 1,
     },
     bodyicon11: {
         borderColor: "#1bf526",
@@ -272,6 +271,7 @@ import React from 'react'
         height: '100%',
         width: '100%',
     },
+
     thoigianthem: {
         marginTop: "0.5%",
         justifyContent: 'center',
@@ -360,7 +360,7 @@ import React from 'react'
         color: "white",
         fontWeight: "bold",
         textAlign: "center",
-        marginTop: "-17%",
+        marginTop: "-16%",
     },
     txtbodydiem: {
         color: "#FFFFFF",
@@ -485,6 +485,11 @@ import React from 'react'
         height: "50%",
         alignItems: "center",
     },
+    img3: {
+        borderRadius: 10,
+        width: 100,
+        height: 100
+      },
     img2: {
         width: "33%",
         height: "120%",

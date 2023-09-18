@@ -1,10 +1,6 @@
-import { StyleSheet, Text, onPress, Number, View, TextInput, TouchableOpacity, Pressable, StatusBar, Image } from 'react-native'
+import { StyleSheet, Text, onPress, View, TextInput, TouchableOpacity, Pressable, StatusBar, Image } from 'react-native'
 import React, { useState, useCallback } from 'react'
-import { Picker } from '@react-native-picker/picker';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import { RNCamera } from 'react-native-camera';
-
-
 const SettingLib = (props) => {
   const [text1, setText1] = useState('');
   const [text2, setText2] = useState('');
@@ -15,15 +11,8 @@ const SettingLib = (props) => {
   const [imageSource1, setImageSource1] = useState(null);
   const [imageSource2, setimageSource2] = useState(null);
   const [tongluotco, settongluotco] = useState('');
-  const [newsDetail, setNewsDetail] = useState(null);
   StatusBar.setHidden(true);
-
   const { navigation, route } = props;
-
-  // const { iddate } = route.params;
-  // console.log(iddate);
-
-
   const Start = () => {
     if (text1 === '' || text2 === '' || second === '' || raceto === '' || secondthem === '' || tongluotco === '') {
       alert('Không được để trống thông tin');
@@ -54,20 +43,17 @@ const SettingLib = (props) => {
   // setImagePath(data.path);
   //   }
   // }, []);
-
   const layanh = () => {
-    launchCamera({ mediaType: 'photo' }, (response) => {
+    launchImageLibrary({ mediaType: 'photo' }, (response) => {
       if (response.didCancel) {
         return;
       } else if (response.error) {
         return;
       } else {
-        //   const uri = response.uri;
         setImageSource(response.assets[0].uri);
       }
     });
   }
-
   const layanh2 = () => {
     launchImageLibrary({ mediaType: 'photo' }, (response) => {
       if (response.didCancel) {
