@@ -1,6 +1,7 @@
 import { StyleSheet, Text, onPress, View, TextInput, TouchableOpacity, Pressable, StatusBar, Image } from 'react-native'
 import React, { useState, useCallback } from 'react'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import AxiosInstance from '../AxiosIntance/AxiosInstance';
 const SettingLib = (props) => {
   const [text1, setText1] = useState('');
   const [text2, setText2] = useState('');
@@ -13,6 +14,7 @@ const SettingLib = (props) => {
   const [tongluotco, settongluotco] = useState('');
   StatusBar.setHidden(true);
   const { navigation, route } = props;
+  const { params } = route;
   const Start = () => {
     if (text1 === '' || text2 === '' || second === '' || raceto === '' || secondthem === '' || tongluotco === '') {
       alert('Không được để trống thông tin');
@@ -21,28 +23,16 @@ const SettingLib = (props) => {
     } else if (isNaN(second) || isNaN(secondthem) || isNaN(tongluotco) || isNaN(raceto)) {
       alert('Thời gian xin thêm và thời gian ra cơ phải là số');
     } else {
+      themtrandau();
       navigation.navigate('Libre', { text1, text2, second, raceto, imageSource, imageSource1, secondthem, imageSource2, tongluotco });
     }
   }
-  // const takePhoto = useCallback(async (response) => {
-  //   if (response.didCancel) return;
-  //   if (response.errorCode) return;
-  //   if (response.errorMessage) return;
-  //   if (response.assets && response.assets.length > 0) {
-  //     const asset = response.assets[0];
+  const themtrandau = async () => {
+    const respone = await AxiosInstance().post('/bida/add', 
+    { name1: text1, name2: text2, Second1: second, Second2: second, raceto: tongluotco, title: "Chưa nghĩ ra tên", iddate: params.id, Score1 : 0, Score2: 0});
 
-  //   setModalVisible(false);
-  // upload image
-  // const formData = new FormData();
-  // formData.append('image', {
-  //   uri: asset.uri,
-  //   type: asset.type,
-  //   name: asset.fileName,
-  // });
-  // const data = await uploadImage(formData);
-  // setImagePath(data.path);
-  //   }
-  // }, []);
+  }
+
   const layanh = () => {
     launchImageLibrary({ mediaType: 'photo' }, (response) => {
       if (response.didCancel) {

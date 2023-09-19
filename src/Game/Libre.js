@@ -59,7 +59,7 @@ const Libre = ({ route, navigation }) => {
         setStart(true);
     };
 
-
+    
 
 
 

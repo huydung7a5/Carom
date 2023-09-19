@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Dimensions, FlatList, Pressable, StatusBar, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { getDate } from '../Navigation/NewService';
-const Settingdate = (props) => {
+const SettingDateGame = (props) => {
     const [fontSizeScore, setfontSizeScore] = useState();
     const [fontSizeRaceTo, setfonsizeracto] = useState();
     const [fontSizeAll, setfontsizeall] = useState();
@@ -45,7 +45,7 @@ const Settingdate = (props) => {
     const renderItem = ({ item }) => {
         setiddate(item._id);
         return (
-            <TouchableOpacity onPress={() => navigation.navigate('Settingdetail', { id: item._id })}>
+            <TouchableOpacity onPress={() => navigation.navigate('SettingLib', { id: item._id })}>
                 <View style={{ width: "100%", height: "auto", alignItems: "center" }}>
                     <View style={styles.viewdate}>
                         <Text style={[styles.txtdate, { fontSize: fontSizeScore }]}>Lịch thi đấu ngày: {item.date}</Text>
@@ -59,7 +59,7 @@ const Settingdate = (props) => {
         <View style={{ width: "100%", height: "100%", marginTop: "5%" }}>
             <View style={styles.title}>
                 <View style={styles.viewtitle}>
-                    <Text style={[styles.txtdate1, { fontSize: fontSizeName }]}>Xem ngày thi đấu</Text>
+                    <Text style={[styles.txtdate1, { fontSize: fontSizeName }]}>Chọn ngày thi đấu để thêm</Text>
                 </View>
             </View>
             <FlatList
@@ -73,7 +73,7 @@ const Settingdate = (props) => {
     )
 }
 
-export default Settingdate
+export default SettingDateGame
 
 const styles = StyleSheet.create({
     txtdate: {
