@@ -16,7 +16,6 @@ const Settingdate = (props) => {
         setLoading(true);
         const news = await getDate();
         setNews(news);
-        setLoading(false);
     }
     useEffect(() => {
         ongetdate();

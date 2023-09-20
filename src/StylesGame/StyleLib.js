@@ -491,8 +491,8 @@ import React from 'react'
         height: 100
       },
     img2: {
-        width: "33%",
-        height: "120%",
+        width: "30%",
+        height: "140%",
         borderRadius: 70,
         borderWidth: 1,
         borderColor: "#1bf526",
@@ -500,7 +500,7 @@ import React from 'react'
     },
     img: {
         width: "33%",
-        height: "120%",
+        height: "140%",
     },
     img1: {
         width: "100%",
@@ -514,7 +514,7 @@ import React from 'react'
         flexDirection: "row"
     },
     item1: {
-        width: "30%",
+        width: "40%",
         height: "60%",
         justifyContent: "space-between",
         alignItems: "center",

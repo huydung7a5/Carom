@@ -7,3 +7,7 @@ export const getDatedetail = async (id) => {
     const respone = await AxiosInstance().get(`/bida/detail/date?iddate=${id}`);
     return respone.data;
 };
+export const getbida = async () => {
+    const respone = await AxiosInstance().get('/bida');
+    return respone;
+}

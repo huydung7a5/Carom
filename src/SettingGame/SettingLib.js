@@ -2,7 +2,7 @@ import { StyleSheet, Text, onPress, View, TextInput, TouchableOpacity, Pressable
 import React, { useState, useCallback } from 'react'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import AxiosInstance from '../AxiosIntance/AxiosInstance';
-const SettingLib = (props) => {
+const SettingLib = (props, item) => {
   const [text1, setText1] = useState('');
   const [text2, setText2] = useState('');
   const [second, setsecond] = useState('');
@@ -24,15 +24,15 @@ const SettingLib = (props) => {
       alert('Thời gian xin thêm và thời gian ra cơ phải là số');
     } else {
       themtrandau();
-      navigation.navigate('Libre', { text1, text2, second, raceto, imageSource, imageSource1, secondthem, imageSource2, tongluotco });
+      navigation.navigate('HomeStack');
     }
   }
   const themtrandau = async () => {
-    const respone = await AxiosInstance().post('/bida/add', 
-    { name1: text1, name2: text2, Second1: second, Second2: second, raceto: tongluotco, title: "Chưa nghĩ ra tên", iddate: params.id, Score1 : 0, Score2: 0});
-
+   
+    const respone = await AxiosInstance().post('/bida/add',
+      { name1: text1, name2: text2, Second1: second, Second2: second, raceto: tongluotco, title: "Chưa nghĩ ra tên", iddate: params.id, Score1: 0, Score2: 0 });
+      
   }
-
   const layanh = () => {
     launchImageLibrary({ mediaType: 'photo' }, (response) => {
       if (response.didCancel) {

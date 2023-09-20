@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, Button, StyleSheet, Pressable, Image, StatusBar, TouchableOpacity, Alert, BackHandler, Dimensions } from 'react-native';
+import { View, Text, Button, StyleSheet, Pressable, Image, StatusBar, TouchableOpacity, Alert, BackHandler, Dimensions, ToastAndroid } from 'react-native';
 import { styles } from '../StylesGame/StyleLib'
 import { RNCamera } from 'react-native-camera';
 import AxiosInstance from '../AxiosIntance/AxiosInstance';
@@ -42,35 +42,55 @@ const Libre = ({ route, navigation }) => {
     const [fontSizeIcon, setfonsizeicon] = useState();
     const [start, setStart] = useState(true);
     this.camera = null;
-
-    const themtrandau = async () => {
-        const respone = await AxiosInstance().post('/bida/edit', 
-        { name1: text1, name2: text2, Second1: second, Second2: second, raceto: tongluotco, title: "Chưa nghĩ ra tên", iddate: params.id, Score1 : 0, Score2: 0});
-    
-      }
-
-
-    const startRecording = async () => {
-        if (this.camera) {
-            try {
-                const { uri, codec = "mp4" } = await this.camera.recordAsync();
-                setStart(false);
-                console.log(uri);
-            } catch (error) {
-                console.warn(error);
-            }
+    useEffect(() => {
+        const { width, height } = Dimensions.get('window');
+        if (width < 400) {
+            setfontSizeScore((width + height) * 0.02); // Tính toán kích thước chữ cho màn hình nhỏ
+            setfonsizeracto((width + height) * 0.09); // Tính toán kích thước chữ cho màn hình nhỏ
+            setfontsizeall((width + height) * 0.007);
+            setfonsizename((width + height) * 0.02);
+            setfonsizesvg((width + height) * 0.015);
+            setfonsizeicon((width + height) * 0.01);
+        } else {
+            setfontSizeScore((width + height) * 0.02); // Tính toán kích thước chữ cho màn hình nhỏ
+            setfonsizeracto((width + height) * 0.09); // Tính toán kích thước chữ cho màn hình nhỏ
+            setfontsizeall((width + height) * 0.007);
+            setfonsizename((width + height) * 0.02);
+            setfonsizesvg((width + height) * 0.015);
+            setfonsizeicon((width + height) * 0.01);
         }
-    };
 
-    const stopRecording = () => {
-        this.camera.stopRecording();
-        setStart(true);
-    };
+    }, [fontSizeScore, fontSizeRaceTo, fontSizeAll, fontSizeName]);
+    useEffect(() => {
+        suatrandau();
+    }, [totallayer1, totallayer2])
+    useEffect(() => {
 
-    
+        const timer = setInterval(() => {
+            if (!paused) {
+                setProgress((prevProgress) => prevProgress - 1);
+            }
+        }, 1000);
 
-
-
+        if (progress <= 5) {
+            setColor('#FF3300');
+            // Thêm mã cảnh báo tại đây
+        } else if (progress <= 10) {
+            setColor('#FF6600');
+        } else if (progress <= 15) {
+            setColor('#FFCC00');
+        } else if (progress <= 20) {
+            setColor('#CCCC00');
+        } else if (progress <= 25) {
+            setColor('#99FF00');
+        } else if (progress <= 30) {
+            setColor('#00FF00');
+        }
+        if (progress === 0) {
+            setPaused(true);
+        }
+        return () => clearInterval(timer);
+    }, [progress, paused, isActive, isnum, second, start]);
     useEffect(() => {
         const backAction = () => {
             Alert.alert("Thông báo", "Bạn có chắc muốn thoát khỏi màn hình này, điều này sẽ mất dữ liệu", [
@@ -92,6 +112,38 @@ const Libre = ({ route, navigation }) => {
         );
         return () => backHandler.remove();
     }, []);
+    const suatrandau = () => {
+        // const respone = await AxiosInstance().post('/bida/edit/',
+        //     { name1: text1, name2: text2, Second1: second, Second2: second, raceto: tongluotco, title: "Chưa nghĩ ra tên", Score1: totallayer1, Score2: totallayer2 });
+        fetch('https://www.dungcoder.id.vn/bida/edit/', {
+            method: 'POST',
+            body: JSON.stringify({
+                // "_id": id,
+                "Score1": totallayer1,
+                "Score2": totallayer2,
+            }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+
+        })
+    }
+    const startRecording = async () => {
+        if (this.camera) {
+            try {
+                const { uri, codec = "mp4" } = await this.camera.recordAsync();
+                setStart(false);
+                console.log(uri);
+            } catch (error) {
+                console.warn(error);
+            }
+        }
+    };
+    const stopRecording = () => {
+        this.camera.stopRecording();
+        setStart(true);
+    };
     const handlePressOut = () => {
         clearInterval(intervalId);
         setIntervalId(null);
@@ -188,34 +240,6 @@ const Libre = ({ route, navigation }) => {
                 break;
         }
     };
-    useEffect(() => {
-
-        const timer = setInterval(() => {
-            if (!paused) {
-                setProgress((prevProgress) => prevProgress - 1);
-            }
-        }, 1000);
-
-        if (progress <= 5) {
-            setColor('#FF3300');
-            // Thêm mã cảnh báo tại đây
-        } else if (progress <= 10) {
-            setColor('#FF6600');
-        } else if (progress <= 15) {
-            setColor('#FFCC00');
-        } else if (progress <= 20) {
-            setColor('#CCCC00');
-        } else if (progress <= 25) {
-            setColor('#99FF00');
-        } else if (progress <= 30) {
-            setColor('#00FF00');
-        }
-        if (progress === 0) {
-            setPaused(true);
-        }
-
-        return () => clearInterval(timer);
-    }, [progress, paused, isActive, isnum, second, start]);
     const handlePause = () => {
         setPaused(true);
         setIsActive(false);
@@ -393,6 +417,7 @@ const Libre = ({ route, navigation }) => {
             }
 
         }
+        suatrandau();
         setDisabled2(true);
         setDisabled3(true);
         setdiemcaonhat(Math.max(diemcaonhat, player1Score));
@@ -491,25 +516,6 @@ const Libre = ({ route, navigation }) => {
         setdiemcaonhat1(Math.max(diemcaonhat1, player2Score));
 
     }
-    useEffect(() => {
-        const { width, height } = Dimensions.get('window');
-        if (width < 400) {
-            setfontSizeScore((width + height) * 0.02); // Tính toán kích thước chữ cho màn hình nhỏ
-            setfonsizeracto((width + height) * 0.09); // Tính toán kích thước chữ cho màn hình nhỏ
-            setfontsizeall((width + height) * 0.007);
-            setfonsizename((width + height) * 0.02);
-            setfonsizesvg((width + height) * 0.015);
-            setfonsizeicon((width + height) * 0.01);
-        } else {
-            setfontSizeScore((width + height) * 0.02); // Tính toán kích thước chữ cho màn hình nhỏ
-            setfonsizeracto((width + height) * 0.09); // Tính toán kích thước chữ cho màn hình nhỏ
-            setfontsizeall((width + height) * 0.007);
-            setfonsizename((width + height) * 0.02);
-            setfonsizesvg((width + height) * 0.015);
-            setfonsizeicon((width + height) * 0.01);
-        }
-
-    }, [fontSizeScore, fontSizeRaceTo, fontSizeAll, fontSizeName]);
     return (
         <View style={{ backgroundColor: "#454b61", width: "100%", height: "100%" }}>
             <View style={styles.title}>
