@@ -18,8 +18,8 @@ const Tab = createBottomTabNavigator();
 const HomeStack = () => {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
-
-      <Tab.Screen name='SettingLib4' component={SettingLib4} />
+      <Tab.Screen name="Xem lịch thi đấu" component={Settingdate} />
+      <Tab.Screen name='Thêm lịch thi đấu' component={SettingDateGame} />
     </Tab.Navigator>
   )
 }
@@ -27,10 +27,11 @@ const NewNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="SettingDateGame" component={SettingDateGame} />
-        <Stack.Screen name="Settingdate" component={Settingdate} />
-        <Stack.Screen name="Settingdetail" component={Settingdetail} />
-        <Tab.Screen name="SettingLib" component={SettingLib} />
+        <Tab.Screen name="HomeStack" component={HomeStack} />
+        {/* <Stack.Screen name="SettingDateGame" component={SettingDateGame}></Stack.Screen>
+        <Stack.Screen name="Settingdate" component={Settingdate} ></Stack.Screen> */}
+        <Stack.Screen name="Settingdetail" component={Settingdetail} ></Stack.Screen>
+        <Stack.Screen name="SettingLib" component={SettingLib} ></Stack.Screen>
         <Stack.Screen name="Setting" component={Setting} ></Stack.Screen>
         <Stack.Screen name="TrangChu" component={TrangChu} ></Stack.Screen>
         <Stack.Screen name="Pool" component={Pool} ></Stack.Screen>

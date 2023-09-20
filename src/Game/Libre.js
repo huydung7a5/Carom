@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, Button, StyleSheet, Pressable, Image, StatusBar, TouchableOpacity, Alert, BackHandler, Dimensions } from 'react-native';
 import { styles } from '../StylesGame/StyleLib'
 import { RNCamera } from 'react-native-camera';
+import AxiosInstance from '../AxiosIntance/AxiosInstance';
 const Libre = ({ route, navigation }) => {
     const { text2, text1, second, raceto, imageSource, imageSource1, imageSource2, secondthem, tongluotco } = route.params;
     const [player1Score, setPlayer1Score] = useState(0);
@@ -33,7 +34,6 @@ const Libre = ({ route, navigation }) => {
     const avg1 = (parseInt(totallayer1) / parseInt(setInn)).toFixed(3);
     const avg2 = (parseInt(totallayer2) / parseInt(setInn)).toFixed(3);
     StatusBar.setHidden(true);
-
     const [fontSizeScore, setfontSizeScore] = useState();
     const [fontSizeRaceTo, setfonsizeracto] = useState();
     const [fontSizeAll, setfontsizeall] = useState();
@@ -42,6 +42,14 @@ const Libre = ({ route, navigation }) => {
     const [fontSizeIcon, setfonsizeicon] = useState();
     const [start, setStart] = useState(true);
     this.camera = null;
+
+    const themtrandau = async () => {
+        const respone = await AxiosInstance().post('/bida/edit', 
+        { name1: text1, name2: text2, Second1: second, Second2: second, raceto: tongluotco, title: "Chưa nghĩ ra tên", iddate: params.id, Score1 : 0, Score2: 0});
+    
+      }
+
+
     const startRecording = async () => {
         if (this.camera) {
             try {

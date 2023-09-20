@@ -9,7 +9,6 @@ const Settingdate = (props) => {
     const [fontSizeAvg, setfonsizesvg] = useState();
     const [fontSizeIcon, setfonsizeicon] = useState();
     const { navigation } = props;
-    const [iddate, setiddate] = useState('');
     StatusBar.setHidden(true);
     const [news, setNews] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -43,7 +42,6 @@ const Settingdate = (props) => {
 
 
     const renderItem = ({ item }) => {
-        setiddate(item._id);
         return (
             <TouchableOpacity onPress={() => navigation.navigate('Settingdetail', { id: item._id })}>
                 <View style={{ width: "100%", height: "auto", alignItems: "center" }}>

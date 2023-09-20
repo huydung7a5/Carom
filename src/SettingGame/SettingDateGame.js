@@ -39,11 +39,7 @@ const SettingDateGame = (props) => {
         }
     }, [fontSizeScore, fontSizeRaceTo, fontSizeAll, fontSizeName]);
 
-
-
-
     const renderItem = ({ item }) => {
-        setiddate(item._id);
         return (
             <TouchableOpacity onPress={() => navigation.navigate('SettingLib', { id: item._id })}>
                 <View style={{ width: "100%", height: "auto", alignItems: "center" }}>
