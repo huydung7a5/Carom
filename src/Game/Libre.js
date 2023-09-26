@@ -4,7 +4,7 @@ import { styles } from '../StylesGame/StyleLib'
 import { RNCamera } from 'react-native-camera';
 import AxiosInstance from '../AxiosIntance/AxiosInstance';
 const Libre = ({ route, navigation }) => {
-    const { text2, text1, second, raceto, imageSource, imageSource1, imageSource2, secondthem, tongluotco, id } = route.params;
+    const { text2, text1, second, raceto, imageSource, imageSource1, imageSource2, secondthem, tongluotco } = route.params;
     const [player1Score, setPlayer1Score] = useState(0);
     const [player2Score, setPlayer2Score] = useState(0);
     const [totallayer1, settotalplayer1] = useState(0);
@@ -118,7 +118,7 @@ const Libre = ({ route, navigation }) => {
         fetch('https://www.dungcoder.id.vn/bida/edit/', {
             method: 'POST',
             body: JSON.stringify({
-                "_id": id,
+                // "_id": id,
                 "Score1": totallayer1,
                 "Score2": totallayer2,
             }),

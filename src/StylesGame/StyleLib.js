@@ -491,16 +491,16 @@ import React from 'react'
         height: 100
       },
     img2: {
-        width: "33%",
-        height: "150%",
+        width: "30%",
+        height: "140%",
         borderRadius: 70,
-        // borderWidth: 1,
-        // borderColor: "#1bf526",
-        // backgroundColor: "#454b61"
+        borderWidth: 1,
+        borderColor: "#1bf526",
+        backgroundColor: "#454b61"
     },
     img: {
         width: "33%",
-        height: "150%",
+        height: "140%",
     },
     img1: {
         width: "100%",

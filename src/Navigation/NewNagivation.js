@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native';
@@ -17,28 +17,10 @@ import ListGame from '../Game/ListGame';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const HomeStack = () => {
-  const screenOptions = ({ route }) => ({
-    headerShown: false,
-    // tabBarIcon: ({ focused, color, size }) => {
-    //   let iconName;
-    //   if (route.name === 'Thêm Lịch thi đấu') {
-    //     if (focused) {
-    //       return <Image style={styles.icon1} source={require('../../media/add_2921226.png')} />
-    //     } else {
-    //       return <Image style={styles.icon1} source={require('../../media/add_2921226.png')} />
-    //     }
-    //   } else if (route.name === 'Danh sách thi đấu') {
-    //     if (focused) {
-    //       return <Image style={styles.icon} source={require('../../media/Noun_Project_list_icon_119366_cc.svg.png')} />
-    //     } else {
-    //       return <Image style={styles.icon} source={require('../../media/Noun_Project_list_icon_119366_cc.svg.png')} />
-    //     }
-    //   }
-    // },
-  })
   return (
-    <Tab.Navigator screenOptions={screenOptions}>
-      <Tab.Screen name='Thêm Lịch thi đấu' component={SettingDateGame} />
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
+      <Tab.Screen name="Xem lịch thi đấu" component={Settingdate} />
+      <Tab.Screen name='Thêm lịch thi đấu' component={SettingDateGame} />
       <Tab.Screen name='Danh sách thi đấu' component={ListGame} ></Tab.Screen>
     </Tab.Navigator>
   )
@@ -49,6 +31,7 @@ const NewNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Tab.Screen name="HomeStack" component={HomeStack} />
+      
         <Stack.Screen name='SettingLib' component={SettingLib} />
         <Stack.Screen name="Settingdetail" component={Settingdetail} ></Stack.Screen>
         <Stack.Screen name="Setting" component={Setting} ></Stack.Screen>
@@ -64,13 +47,3 @@ const NewNavigator = () => {
 }
 
 export default NewNavigator
-const styles = StyleSheet.create({
-  icon1: {
-    width: "155%",
-    height: "80%",
-  },
-  icon: {
-    width: "130%",
-    height: "80%",
-  }
-})
