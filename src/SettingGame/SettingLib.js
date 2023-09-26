@@ -1,7 +1,8 @@
-import { StyleSheet, Text, onPress, View, TextInput, TouchableOpacity, Pressable, StatusBar, Image } from 'react-native'
+import { StyleSheet, Text, onPress, View, TextInput, TouchableOpacity, Pressable, StatusBar, Image, ToastAndroid } from 'react-native'
 import React, { useState, useCallback } from 'react'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import AxiosInstance from '../AxiosIntance/AxiosInstance';
+import axios from 'axios';
 const SettingLib = (props, item) => {
   const [text1, setText1] = useState('');
   const [text2, setText2] = useState('');
@@ -12,6 +13,7 @@ const SettingLib = (props, item) => {
   const [imageSource1, setImageSource1] = useState(null);
   const [imageSource2, setimageSource2] = useState(null);
   const [tongluotco, settongluotco] = useState('');
+  const [title, settile] = useState('');
   StatusBar.setHidden(true);
   const { navigation, route } = props;
   const { params } = route;
@@ -23,15 +25,68 @@ const SettingLib = (props, item) => {
     } else if (isNaN(second) || isNaN(secondthem) || isNaN(tongluotco) || isNaN(raceto)) {
       alert('Thời gian xin thêm và thời gian ra cơ phải là số');
     } else {
-      themtrandau();
+      handleUpload();
+      ToastAndroid.show("Thêm thành công vui lòng đợi 10s để tải lên Server", ToastAndroid.SHORT);
       navigation.navigate('HomeStack');
     }
   }
+  const handleUpload = () => {
+    const data = new FormData();
+    data.append('image', {
+      name: 'image.jpg',
+      type: 'image/jpeg',
+      uri:
+        Platform.OS === 'android'
+          ? imageSource
+          : imageSource.replace('file://', 'null'),
+    });
+    data.append('image', {
+      name: 'image.jpg',
+      type: 'image/jpeg',
+      uri:
+        Platform.OS === 'android'
+          ? imageSource1
+          : imageSource1.replace('file://', 'null'),
+    });
+    data.append('image', {
+      name: 'image.jpg',
+      type: 'image/jpeg',
+      uri:
+        Platform.OS === 'android'
+          ? imageSource2
+          : imageSource2.replace('file://', 'null'),   
+    });
+    data.append('name1', text1);
+    data.append('name2', text2);
+    data.append('Second1', second);
+    data.append('Second2', second);
+    data.append('raceto', raceto);
+    data.append('title', title);
+    data.append('iddate', params.id);
+    data.append('Score1', 0);
+    data.append('Score2', 0);
+    data.append('Secondthem', secondthem);
+    data.append('totalnumber', tongluotco)
+    if(imageSource1 === null || imageSource2 === null || imageSource === null){
+    }
+    fetch('https://www.dungcoder.id.vn/bida/add', {
+      method: 'POST',
+      body: data
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+      }
+      ).catch((error) => {
+        console.error(error);
+      })
+  }
   const themtrandau = async () => {
-   
     const respone = await AxiosInstance().post('/bida/add',
-      { name1: text1, name2: text2, Second1: second, Second2: second, raceto: tongluotco, title: "Chưa nghĩ ra tên", iddate: params.id, Score1: 0, Score2: 0 });
-      
+      { name1: text1, name2: text2, Second1: second, Second2: second, raceto: tongluotco, title: title, iddate: params.id, Score1: 0, Score2: 0 });
+    if (respone) {
+      ToastAndroid.show("Thêm thành công", ToastAndroid.SHORT);
+    }
   }
   const layanh = () => {
     launchImageLibrary({ mediaType: 'photo' }, (response) => {
@@ -69,6 +124,9 @@ const SettingLib = (props, item) => {
   return (
     <View style={{ backgroundColor: "white" }}>
       <View style={styles.input1}>
+        <View style={styles.item2}>
+          <TextInput value={title} onChangeText={settile} style={styles.txtinput1} placeholder='Nhập tên trận đấu'></TextInput>
+        </View>
         <View style={styles.item2}>
           <TextInput value={text1} onChangeText={setText1} style={styles.txtinput1} placeholder='Nhập tên đội 1'></TextInput>
         </View>
@@ -252,7 +310,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   item2: {
-    width: "30%",
+    width: "23%",
     marginTop: "4%",
     alignItems: "center",
     height: "75%"
