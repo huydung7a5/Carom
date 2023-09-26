@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, Button, StyleSheet, Pressable, Image, StatusBar, TouchableOpacity, Alert, BackHandler, Dimensions } from 'react-native';
+import { View, Text, Button, StyleSheet, Pressable, Image, StatusBar, TouchableOpacity, Alert, BackHandler, Dimensions, ToastAndroid } from 'react-native';
 import { styles } from '../StylesGame/StyleLib'
-import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { RNCamera } from 'react-native-camera';
+import AxiosInstance from '../AxiosIntance/AxiosInstance';
 const Libre = ({ route, navigation }) => {
-    const { text2, text1, second, raceto, imageSource, imageSource1, imageSource2, secondthem, tongluotco } = route.params;
+    const { text2, text1, second, raceto, imageSource, imageSource1, imageSource2, secondthem, tongluotco, id } = route.params;
     const [player1Score, setPlayer1Score] = useState(0);
     const [player2Score, setPlayer2Score] = useState(0);
     const [totallayer1, settotalplayer1] = useState(0);
@@ -33,38 +34,63 @@ const Libre = ({ route, navigation }) => {
     const avg1 = (parseInt(totallayer1) / parseInt(setInn)).toFixed(3);
     const avg2 = (parseInt(totallayer2) / parseInt(setInn)).toFixed(3);
     StatusBar.setHidden(true);
-
     const [fontSizeScore, setfontSizeScore] = useState();
     const [fontSizeRaceTo, setfonsizeracto] = useState();
     const [fontSizeAll, setfontsizeall] = useState();
     const [fontSizeName, setfonsizename] = useState();
     const [fontSizeAvg, setfonsizesvg] = useState();
     const [fontSizeIcon, setfonsizeicon] = useState();
-    const launchCamera = () => {
-        const options = {
-            storageOptions: {
-                skipBackup: true,
-                path: 'images',
-            },
-        };
+    const [start, setStart] = useState(true);
+    this.camera = null;
+    useEffect(() => {
+        const { width, height } = Dimensions.get('window');
+        if (width < 400) {
+            setfontSizeScore((width + height) * 0.02); // Tính toán kích thước chữ cho màn hình nhỏ
+            setfonsizeracto((width + height) * 0.09); // Tính toán kích thước chữ cho màn hình nhỏ
+            setfontsizeall((width + height) * 0.007);
+            setfonsizename((width + height) * 0.02);
+            setfonsizesvg((width + height) * 0.015);
+            setfonsizeicon((width + height) * 0.01);
+        } else {
+            setfontSizeScore((width + height) * 0.02); // Tính toán kích thước chữ cho màn hình nhỏ
+            setfonsizeracto((width + height) * 0.09); // Tính toán kích thước chữ cho màn hình nhỏ
+            setfontsizeall((width + height) * 0.007);
+            setfonsizename((width + height) * 0.02);
+            setfonsizesvg((width + height) * 0.015);
+            setfonsizeicon((width + height) * 0.01);
+        }
 
-        launchCamera(options, (response) => {
-            if (response.didCancel) {
-                console.log('User cancelled image picker');
-            } else if (response.error) {
-                console.log('ImagePicker Error: ', response.error);
-            } else if (response.customButton) {
-                console.log('User tapped custom button: ', response.customButton);
-            } else {
-                const uri = response.uri;
-                setImageUri(uri);
+    }, [fontSizeScore, fontSizeRaceTo, fontSizeAll, fontSizeName]);
+    useEffect(() => {
+        suatrandau();
+    }, [totallayer1, totallayer2])
+    useEffect(() => {
+
+        const timer = setInterval(() => {
+            if (!paused) {
+                setProgress((prevProgress) => prevProgress - 1);
             }
-        });
-    };
+        }, 1000);
 
-
-
-
+        if (progress <= 5) {
+            setColor('#FF3300');
+            // Thêm mã cảnh báo tại đây
+        } else if (progress <= 10) {
+            setColor('#FF6600');
+        } else if (progress <= 15) {
+            setColor('#FFCC00');
+        } else if (progress <= 20) {
+            setColor('#CCCC00');
+        } else if (progress <= 25) {
+            setColor('#99FF00');
+        } else if (progress <= 30) {
+            setColor('#00FF00');
+        }
+        if (progress === 0) {
+            setPaused(true);
+        }
+        return () => clearInterval(timer);
+    }, [progress, paused, isActive, isnum, second, start]);
     useEffect(() => {
         const backAction = () => {
             Alert.alert("Thông báo", "Bạn có chắc muốn thoát khỏi màn hình này, điều này sẽ mất dữ liệu", [
@@ -86,6 +112,38 @@ const Libre = ({ route, navigation }) => {
         );
         return () => backHandler.remove();
     }, []);
+    const suatrandau = () => {
+        // const respone = await AxiosInstance().post('/bida/edit/',
+        //     { name1: text1, name2: text2, Second1: second, Second2: second, raceto: tongluotco, title: "Chưa nghĩ ra tên", Score1: totallayer1, Score2: totallayer2 });
+        fetch('https://www.dungcoder.id.vn/bida/edit/', {
+            method: 'POST',
+            body: JSON.stringify({
+                "_id": id,
+                "Score1": totallayer1,
+                "Score2": totallayer2,
+            }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+
+        })
+    }
+    const startRecording = async () => {
+        if (this.camera) {
+            try {
+                const { uri, codec = "mp4" } = await this.camera.recordAsync();
+                setStart(false);
+                console.log(uri);
+            } catch (error) {
+                console.warn(error);
+            }
+        }
+    };
+    const stopRecording = () => {
+        this.camera.stopRecording();
+        setStart(true);
+    };
     const handlePressOut = () => {
         clearInterval(intervalId);
         setIntervalId(null);
@@ -182,34 +240,6 @@ const Libre = ({ route, navigation }) => {
                 break;
         }
     };
-    useEffect(() => {
-
-        const timer = setInterval(() => {
-            if (!paused) {
-                setProgress((prevProgress) => prevProgress - 1);
-            }
-        }, 1000);
-
-        if (progress <= 5) {
-            setColor('#FF3300');
-            // Thêm mã cảnh báo tại đây
-        } else if (progress <= 10) {
-            setColor('#FF6600');
-        } else if (progress <= 15) {
-            setColor('#FFCC00');
-        } else if (progress <= 20) {
-            setColor('#CCCC00');
-        } else if (progress <= 25) {
-            setColor('#99FF00');
-        } else if (progress <= 30) {
-            setColor('#00FF00');
-        }
-        if (progress === 0) {
-            setPaused(true);
-        }
-
-        return () => clearInterval(timer);
-    }, [progress, paused, isActive, isnum, second]);
     const handlePause = () => {
         setPaused(true);
         setIsActive(false);
@@ -387,6 +417,7 @@ const Libre = ({ route, navigation }) => {
             }
 
         }
+        suatrandau();
         setDisabled2(true);
         setDisabled3(true);
         setdiemcaonhat(Math.max(diemcaonhat, player1Score));
@@ -485,25 +516,6 @@ const Libre = ({ route, navigation }) => {
         setdiemcaonhat1(Math.max(diemcaonhat1, player2Score));
 
     }
-    useEffect(() => {
-        const { width, height } = Dimensions.get('window');
-        if (width < 400) {
-            setfontSizeScore((width + height) * 0.02); // Tính toán kích thước chữ cho màn hình nhỏ
-            setfonsizeracto((width + height) * 0.09); // Tính toán kích thước chữ cho màn hình nhỏ
-            setfontsizeall((width + height) * 0.007);
-            setfonsizename((width + height) * 0.02);
-            setfonsizesvg((width + height) * 0.015);
-            setfonsizeicon((width + height) * 0.01);
-        } else {
-            setfontSizeScore((width + height) * 0.02); // Tính toán kích thước chữ cho màn hình nhỏ
-            setfonsizeracto((width + height) * 0.09); // Tính toán kích thước chữ cho màn hình nhỏ
-            setfontsizeall((width + height) * 0.007);
-            setfonsizename((width + height) * 0.02);
-            setfonsizesvg((width + height) * 0.015);
-            setfonsizeicon((width + height) * 0.01);
-        }
-
-    }, [fontSizeScore, fontSizeRaceTo, fontSizeAll, fontSizeName]);
     return (
         <View style={{ backgroundColor: "#454b61", width: "100%", height: "100%" }}>
             <View style={styles.title}>
@@ -587,9 +599,17 @@ const Libre = ({ route, navigation }) => {
                             </View>
                         </View>
                         <View style={styles.viewsetin}>
-                            <Pressable onPress={launchCamera}>
-                                <Text style={[styles.txtraceto1, { fontSize: fontSizeAll }]}>Bật camera</Text>
-                            </Pressable>
+                            <RNCamera
+                                ref={ref => {
+                                    camera = ref;
+                                }}
+                                style={{ width: "100%", height: "100%" }}
+                                type={RNCamera.Constants.Type.back}
+                                flashMode={RNCamera.Constants.FlashMode.off}
+                            />
+                            {/* {!start ? (
+                                <Button title='Stop record' onPress={stopRecording} />) : (
+                                <Button title='Start record' onPress={startRecording} />)} */}
                         </View>
                     </View>
                     <Pressable style={styles.bodyitemcon} onPress={() => handleItemClick("player2")}>
@@ -654,7 +674,7 @@ const Libre = ({ route, navigation }) => {
                         </View>
 
                         <View style={styles.navconv2}>
-                            <Text style={[styles.txtitemcong1,{fontSize: fontSizeIcon}]}>EXTENSION</Text>
+                            <Text style={[styles.txtitemcong1, { fontSize: fontSizeIcon }]}>EXTENSION</Text>
                         </View>
                         <View style={styles.viewne}>
                             {isVisible1 && <TouchableOpacity style={styles.navitemconv2} onPress={handlethemluot1}>
@@ -664,7 +684,7 @@ const Libre = ({ route, navigation }) => {
                     </View>
                     <View style={styles.navitemcon1}>
                         <View style={styles.navitemconv3}>
-                            <Text style={[styles.txtInn,{fontSize: fontSizeScore}]}>Inn</Text>
+                            <Text style={[styles.txtInn, { fontSize: fontSizeScore }]}>Inn</Text>
                         </View>
                     </View>
                     <View style={styles.navitemcon}>
@@ -674,7 +694,7 @@ const Libre = ({ route, navigation }) => {
                             </TouchableOpacity>}
                         </View>
                         <View style={styles.navconv2}>
-                        <Text style={[styles.txtitemcong1,{fontSize: fontSizeIcon}]}>EXTENSION</Text>
+                            <Text style={[styles.txtitemcong1, { fontSize: fontSizeIcon }]}>EXTENSION</Text>
                         </View>
                         <View style={styles.viewne}>
                             {isVisible3 && <TouchableOpacity style={styles.navitemconv2} onPress={handlethemluot3}>
