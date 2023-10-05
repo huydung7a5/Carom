@@ -18,6 +18,7 @@ import {
 } from 'react-native';
 import NewNavigator from './src/Navigation/NewNagivation';
 import MyComponent from './src/TestGame/MyComponent ';
+import App1 from './src/TestGame/App1';
 function App(): JSX.Element {
 
 

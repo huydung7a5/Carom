@@ -14,7 +14,8 @@ const AxiosInstance = (contentType = 'application/json') => {
             config.headers = {
                 'Authorization': `Bearer ${token}`,
                 'Accept': 'application/json',
-                'Content-Type': contentType
+                'Content-Type': contentType,
+                "User-Agent": "axios 0.21.1"
             }
             return config;
         },

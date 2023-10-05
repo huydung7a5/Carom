@@ -22,6 +22,7 @@ const Pool = ({ route }) => {
     const [fontSizeRaceTo, setfonsizeracto] = useState();
     const [fontSizeAll, setfontsizeall] = useState();
     const [fontSizeName, setfonsizename] = useState();
+   
 
     StatusBar.setHidden(true);
 
