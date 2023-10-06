@@ -387,7 +387,7 @@ const SettingLib = (props, item) => {
       </View>
       <View style={styles.pr}>
         <Pressable style={styles.btnstart} onPress={Start}>
-          <Text style={styles.txtbtn}>Bắt Đầu</Text>
+          <Text style={styles.txtbtn}>Thêm trận đấu</Text>
         </Pressable>
       </View>
     </View>
