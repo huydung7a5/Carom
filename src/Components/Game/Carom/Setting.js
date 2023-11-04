@@ -1,9 +1,10 @@
 import { StyleSheet, Text, onPress, View, TextInput, TouchableOpacity, Pressable, StatusBar, Image, ToastAndroid } from 'react-native'
 import React, { useState, useCallback } from 'react'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import AxiosInstance from '../AxiosIntance/AxiosInstance';
+import AxiosInstance from '../../Helpers/AxiosInstance';
 import axios from 'axios';
 const SettingLib = (props, item) => {
+
   const [text1, setText1] = useState('');
   const [text2, setText2] = useState('');
   const [second, setsecond] = useState('');
@@ -17,6 +18,7 @@ const SettingLib = (props, item) => {
   StatusBar.setHidden(true);
   const { navigation, route } = props;
   const { params } = route;
+ 
   const Start = () => {
     if (text1 === '' || text2 === '' || second === '' || raceto === '' || secondthem === '' || tongluotco === '') {
       alert('Không được để trống thông tin');
@@ -33,6 +35,7 @@ const SettingLib = (props, item) => {
   const handleUpload = () => {
     const data = new FormData();
     if (imageSource === null && imageSource1 === null && imageSource2 === null) {
+      data.append('date', params.date);
       data.append('name1', text1);
       data.append('name2', text2);
       data.append('Second1', second);
@@ -66,6 +69,8 @@ const SettingLib = (props, item) => {
             ? imageSource2
             : imageSource2.replace('file://', 'null'),
       });
+      data.append('date', params.date);
+      data.append('name1', date);
       data.append('name1', text1);
       data.append('name2', text2);
       data.append('Second1', second);
@@ -97,6 +102,8 @@ const SettingLib = (props, item) => {
         uri:
           Platform.OS === 'android' ? imageSource : imageSource.replace('file://', 'null'),
       });
+      data.append('date', params.date);
+      data.append('name1', date);
       data.append('name1', text1);
       data.append('name2', text2);
       data.append('Second1', second);
@@ -130,6 +137,8 @@ const SettingLib = (props, item) => {
             ? imageSource1
             : imageSource1.replace('file://', 'null'),
       });
+      data.append('date', params.date);
+      data.append('name1', date);
       data.append('name1', text1);
       data.append('name2', text2);
       data.append('Second1', second);
@@ -171,6 +180,8 @@ const SettingLib = (props, item) => {
             ? imageSource2
             : imageSource2.replace('file://', 'null'),
       });
+      data.append('date', params.date);
+      data.append('name1', date);
       data.append('name1', text1);
       data.append('name2', text2);
       data.append('Second1', second);
@@ -210,6 +221,8 @@ const SettingLib = (props, item) => {
             ? imageSource2
             : imageSource2.replace('file://', 'null'),
       });
+      data.append('date', params.date);
+      data.append('name1', date);
       data.append('name1', text1);
       data.append('name2', text2);
       data.append('Second1', second);
@@ -249,6 +262,55 @@ const SettingLib = (props, item) => {
             ? imageSource1
             : imageSource1.replace('file://', 'null'),
       });
+      data.append('date', params.date);
+      data.append('name1', date);
+      data.append('name1', text1);
+      data.append('name2', text2);
+      data.append('Second1', second);
+      data.append('Second2', second);
+      data.append('raceto', raceto);
+      data.append('title', title);
+      data.append('iddate', params.id);
+      data.append('Score1', 0);
+      data.append('Score2', 0);
+      data.append('Secondthem', secondthem);
+      data.append('totalnumber', tongluotco)
+
+      fetch('https://www.dungcoder.id.vn/bida/add', {
+        method: 'POST',
+        body: data
+      })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          console.log(responseJson);
+        }
+        ).catch((error) => {
+          console.error(error);
+        })
+
+    } else {
+      data.append('image', {
+        name: 'image.jpg',
+        type: 'image/jpeg',
+        uri:
+          Platform.OS === 'android' ? imageSource : imageSource.replace('file://', 'null'),
+      });
+      data.append('image1', {
+        name: 'image.jpg',
+        type: 'image/jpeg',
+        uri:
+          Platform.OS === 'android'
+            ? imageSource1
+            : imageSource1.replace('file://', 'null'),
+      });
+      data.append('image2', {
+        name: 'image.jpg',
+        type: 'image/jpeg',
+        uri:
+          Platform.OS === 'android' ? imageSource2 : imageSource2.replace('file://', 'null'),
+      });
+      data.append('date', params.date);
+      data.append('name1', date);
       data.append('name1', text1);
       data.append('name2', text2);
       data.append('Second1', second);
@@ -335,17 +397,17 @@ const SettingLib = (props, item) => {
       <View style={styles.pr1}>
         <TouchableOpacity onPress={layanh} style={{ width: "30%", alignItems: "center" }}>
           {imageSource === null ?
-            (<Image style={styles.img} source={require('../../media/anhnguoidung.jpg')} />)
+            (<Image style={styles.img} source={require('../../../Media/Images/anhnguoidung.jpg')} />)
             : (<Image style={styles.img} source={{ uri: imageSource }} />)}
         </TouchableOpacity>
         <TouchableOpacity onPress={layanh2} style={{ width: "30%", alignItems: "center" }}>
           {imageSource1 === null ?
-            (<Image style={styles.img} source={require('../../media/anhnguoidung.jpg')} />)
+            (<Image style={styles.img} source={require('../../../Media/Images/anhnguoidung.jpg')} />)
             : (<Image style={styles.img} source={{ uri: imageSource1 }} />)}
         </TouchableOpacity>
         <TouchableOpacity onPress={layanh3} style={{ width: "30%", alignItems: "center" }}>
           {imageSource2 === null ?
-            (<Image style={styles.img} source={require('../../media/anhnguoidung.jpg')} />)
+            (<Image style={styles.img} source={require('../../../Media/Images/anhnguoidung.jpg')} />)
             : (<Image style={styles.img} source={{ uri: imageSource2 }} />)}
         </TouchableOpacity>
       </View>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet, Dimensions, Pressable, Image, StatusBar, TouchableOpacity, Alert } from 'react-native';
-import { styles } from '../StylesGame/StylePool';
+import { styles } from '../../StylesGame/StylePool';
 const Pool = ({ route }) => {
 
     const { text2, text1, second, raceto, imageSource, imageSource1, secondthem } = route.params;

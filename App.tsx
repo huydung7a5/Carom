@@ -6,27 +6,19 @@
  */
 
 import React from 'react';
-import type { PropsWithChildren } from 'react';
+
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
+  SafeAreaView
 } from 'react-native';
-import NewNavigator from './src/Navigation/NewNagivation';
-import MyComponent from './src/TestGame/MyComponent ';
-import App1 from './src/TestGame/App1';
+import NewNavigator from './src/Components/Navigation/NewNagivation';
+
+import Index from './src/Components/SplasScreen/Index';
 function App(): JSX.Element {
 
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-
-      <NewNavigator></NewNavigator>
-      {/* <MyComponent></MyComponent> */}
+      <NewNavigator />
     </SafeAreaView>
   );
 }

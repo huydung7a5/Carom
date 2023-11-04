@@ -3,17 +3,17 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Setting from '../SettingGame/Setting';
-import Pool from '../Game/Pool';
+import Setting from '../Game/pool/Setting';
+import Pool from '../Game/pool/Pool';
 import TrangChu from '../Index/TrangChu';
-import SettingLib from '../SettingGame/SettingLib';
-import Libre from '../Game/Libre';
-import SettingLib4 from '../SettingGame/SettingLib4';
-import Libre4 from '../Game/Libre4';
-import Settingdate from '../SettingGame/Settingdate';
-import Settingdetail from '../SettingGame/Settingdetail';
-import SettingDateGame from '../SettingGame/SettingDateGame';
-import ListGame from '../Game/ListGame';
+import SettingLib from '../Game/Carom/Setting';
+import Libre from '../Game/Carom/Carom';
+import SettingLib4 from '../Game/Lib/SettingLib4';
+import Libre4 from '../Game/Lib/Libre4';
+import Settingdate from '../Date/Date';
+import Settingdetail from '../Game/Carom/SettingDetail';
+import SettingDateGame from '../Game/Carom/AddDateGame';
+import ListGame from '../Game/Carom/ListGame';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const HomeStack = () => {

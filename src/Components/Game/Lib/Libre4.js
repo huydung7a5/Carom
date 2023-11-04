@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet, Pressable, Image, StatusBar, TouchableOpacity, Alert } from 'react-native';
-import { styles } from '../StylesGame/StyleLib4';
+import { styles } from '../../StylesGame/StyleLib4';
 const Libre4 = () => {
     StatusBar.setHidden(true);
     const handleAddScore = (player) => {

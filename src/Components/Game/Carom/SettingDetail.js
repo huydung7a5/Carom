@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, ScrollView, Pressable, TouchableOpacity, FlatList, Dimensions } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import AxiosInstance from '../AxiosIntance/AxiosInstance';
+import AxiosInstance from '../../Helpers/AxiosInstance';
 const Settingdetail = (props) => {
   const [fontSizeScore, setfontSizeScore] = useState();
   const [fontSizeRaceTo, setfonsizeracto] = useState();

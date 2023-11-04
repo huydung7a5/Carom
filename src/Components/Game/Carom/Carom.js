@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, Button, StyleSheet, Pressable, Image, StatusBar, TouchableOpacity, Alert, BackHandler, Dimensions, ToastAndroid } from 'react-native';
-import { styles } from '../StylesGame/StyleLib'
+import { styles } from '../../StylesGame/StyleLib'
 import { RNCamera } from 'react-native-camera';
-import AxiosInstance from '../AxiosIntance/AxiosInstance';
+import AxiosInstance from '../../Helpers/AxiosInstance';
 const Libre = ({ route, navigation }) => {
     const { text2, text1, second, raceto, imageSource, imageSource1, imageSource2, secondthem, tongluotco, id, Score1, Score2 } = route.params;
     const [player1Score, setPlayer1Score] = useState(0);

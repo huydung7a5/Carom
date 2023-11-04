@@ -1,4 +1,4 @@
-import AxiosInstance from "../AxiosIntance/AxiosInstance";
+import AxiosInstance from "./AxiosInstance";
 export const getDate = async () => {
     const respone = await AxiosInstance().get('/date');
     return respone;

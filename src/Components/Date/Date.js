@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Dimensions, FlatList, Pressable, StatusBar, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { getDate } from '../Navigation/NewService';
+import { getDate } from '../Helpers/NewService';
 const Settingdate = (props) => {
     const [fontSizeScore, setfontSizeScore] = useState();
     const [fontSizeRaceTo, setfonsizeracto] = useState();

@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, Image, ScrollView, Pressable, TouchableOpacity, FlatList, Dimensions, ToastAndroid, Alert } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { getbida } from '../Navigation/NewService';
-import { deleteitem } from '../Navigation/NewService';
-import AxiosInstance from '../AxiosIntance/AxiosInstance';
+import { getbida } from '../../Helpers/NewService';
+import { deleteitem } from '../../Helpers/NewService';
+import AxiosInstance from '../../Helpers/AxiosInstance';
 const ListGame = (props) => {
   const [fontSizeScore, setfontSizeScore] = useState();
   const [fontSizeRaceTo, setfonsizeracto] = useState();
@@ -87,6 +87,7 @@ const ListGame = (props) => {
             <Text style={[styles.txtdate, { fontSize: fontSizeAvg }]}>Score 2 : {item.Score2}</Text>
             <Text style={[styles.txtdate, { fontSize: fontSizeAvg }]}>Race to : {item.raceto}</Text>
             <Text style={[styles.txtdate, { fontSize: fontSizeAvg }]}>Tổng lượt cơ : {item.totalnumber}</Text>
+            <Text style={[styles.txtdate, { fontSize: fontSizeAvg }]}>Date : {item.date}</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity style={styles.custom} onPress={handledelete}>
@@ -148,7 +149,7 @@ const styles = StyleSheet.create({
   },
   viewdate1: {
     width: "80%",
-    height: "13%",
+    height: "auto",
     justifyContent: "center",
     alignItems: "center",
     marginTop: "2%",

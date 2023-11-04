@@ -66,12 +66,12 @@ const Setting = (props, route) => {
       <View style={styles.pr1}>
         <TouchableOpacity onPress={layanh}>
           {imageSource === null ?
-            (<Image style={styles.img} source={require('../../media/anhnguoidung.jpg')} />)
+            (<Image style={styles.img} source={require('../../../Media/Images/anhnguoidung.jpg')} />)
             : (<Image style={styles.img} source={{ uri: imageSource }} />)}
         </TouchableOpacity>
         <TouchableOpacity onPress={layanh2}>
           {imageSource1 === null ?
-            (<Image style={styles.img} source={require('../../media/anhnguoidung.jpg')} />)
+            (<Image style={styles.img} source={require('../../../Media/Images/anhnguoidung.jpg')} />)
             : (<Image style={styles.img} source={{ uri: imageSource1 }} />)}
         </TouchableOpacity>
       </View>

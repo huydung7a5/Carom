@@ -21,9 +21,9 @@ const TrangChu = (props) => {
                     <TextInput style={styles.txttimkiem} placeholder='Tìm kiếm' />
                 </View>
                 <View style={styles.title3}>
-                    <Image style={{ width: "15%", height: "30%" }} source={require('../../media/new.png')} />
-                    <Image style={{ width: "15%", height: "30%" }} source={require('../../media/setting.png')} />
-                    <Image style={{ width: "15%", height: "30%" }} source={require('../../media/user.png')} />
+                    <Image style={{ width: "15%", height: "30%" }} source={require('../../Media/Images/new.png')} />
+                    <Image style={{ width: "15%", height: "30%" }} source={require('../../Media/Images/setting.png')} />
+                    <Image style={{ width: "15%", height: "30%" }} source={require('../../Media/Images/user.png')} />
                 </View>
             </View>
             <View style={styles.body}>
@@ -40,7 +40,7 @@ const TrangChu = (props) => {
                         <View style={styles.bodybodycon1}>
                             <Text style={styles.txtkenhphat}>Kênh phát</Text>
                             <View style={styles.view}>
-                                <Image style={{ width: "100%", height: "60%", left: "-5%" }} source={require('../../media/icon.jpg')} />
+                                <Image style={{ width: "100%", height: "60%", left: "-5%" }} source={require('../../Media/Images/icon.jpg')} />
                             </View>
                         </View>
                     </View>
@@ -56,25 +56,25 @@ const TrangChu = (props) => {
                         <View style={styles.bodybodycon1}>
                             <Text style={styles.txtkenhphat}>Học cùng cơ thủ(Video Free)</Text>
                             <View style={styles.view}>
-                                <Image style={{ width: "100%", height: "60%", left: "-5%" }} source={require('../../media/icon.jpg')} />
+                                <Image style={{ width: "100%", height: "60%", left: "-5%" }} source={require('../../Media/Images/icon.jpg')} />
                             </View>
                         </View>
                     </View>
                     <View style={styles.bodyitem12}>
                         <View style={styles.bodyitemcon}>
-                            <Image style={{ width: "60%", height: "60%" }} source={require('../../media/bida.png')} />
+                            <Image style={{ width: "60%", height: "60%" }} source={require('../../Media/Images/bida.png')} />
                             <Text style={styles.txttensukien1}>Đặt bàn</Text>
                         </View>
                         <View style={styles.bodyitemcon}>
-                        <Image style={{ width: "50%", height: "60%" }} source={require('../../media/friend.png')} />
+                        <Image style={{ width: "50%", height: "60%" }} source={require('../../Media/Images/friend.png')} />
                             <Text style={styles.txttensukien1}>Tìm bạn chơi</Text>
                         </View>
                         <View style={styles.bodyitemcon}>
-                        <Image style={{ width: "50%", height: "60%" }} source={require('../../media/school.jpg')} />
+                        <Image style={{ width: "50%", height: "60%" }} source={require('../../Media/Images/school.jpg')} />
                             <Text style={styles.txttensukien1}>Đăng kí khóa học</Text>
                         </View>
                         <View style={styles.bodyitemcon}>
-                        <Image style={{ width: "60%", height: "60%" }} source={require('../../media/giohang.png')} />
+                        <Image style={{ width: "60%", height: "60%" }} source={require('../../Media/Images/giohang.png')} />
                             <Text style={styles.txttensukien1}>Mua hàng</Text>
                         </View>
 
