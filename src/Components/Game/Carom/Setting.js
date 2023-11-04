@@ -70,7 +70,6 @@ const SettingLib = (props, item) => {
             : imageSource2.replace('file://', 'null'),
       });
       data.append('date', params.date);
-      data.append('name1', date);
       data.append('name1', text1);
       data.append('name2', text2);
       data.append('Second1', second);
@@ -103,7 +102,6 @@ const SettingLib = (props, item) => {
           Platform.OS === 'android' ? imageSource : imageSource.replace('file://', 'null'),
       });
       data.append('date', params.date);
-      data.append('name1', date);
       data.append('name1', text1);
       data.append('name2', text2);
       data.append('Second1', second);
@@ -138,7 +136,6 @@ const SettingLib = (props, item) => {
             : imageSource1.replace('file://', 'null'),
       });
       data.append('date', params.date);
-      data.append('name1', date);
       data.append('name1', text1);
       data.append('name2', text2);
       data.append('Second1', second);
@@ -181,7 +178,7 @@ const SettingLib = (props, item) => {
             : imageSource2.replace('file://', 'null'),
       });
       data.append('date', params.date);
-      data.append('name1', date);
+
       data.append('name1', text1);
       data.append('name2', text2);
       data.append('Second1', second);
@@ -222,7 +219,7 @@ const SettingLib = (props, item) => {
             : imageSource2.replace('file://', 'null'),
       });
       data.append('date', params.date);
-      data.append('name1', date);
+
       data.append('name1', text1);
       data.append('name2', text2);
       data.append('Second1', second);
@@ -263,7 +260,6 @@ const SettingLib = (props, item) => {
             : imageSource1.replace('file://', 'null'),
       });
       data.append('date', params.date);
-      data.append('name1', date);
       data.append('name1', text1);
       data.append('name2', text2);
       data.append('Second1', second);
@@ -310,7 +306,6 @@ const SettingLib = (props, item) => {
           Platform.OS === 'android' ? imageSource2 : imageSource2.replace('file://', 'null'),
       });
       data.append('date', params.date);
-      data.append('name1', date);
       data.append('name1', text1);
       data.append('name2', text2);
       data.append('Second1', second);

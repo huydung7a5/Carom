@@ -78,7 +78,7 @@ const ListGame = (props) => {
       <View style={{ width: "33%", height: "auto", alignItems: "center", marginTop: "1%" }} >
         <TouchableOpacity style={{ width: "100%", height: "auto", alignItems: "center", marginTop: "1%" }} onPress={() =>
           navigation.navigate('Libre',
-            { id: item._id, Score1: item.Score1, Score2: item.Score2, text1: item.name1, text2: item.name2, raceto: item.raceto, second: item.Second1, imageSource: item.image, imageSource1: item.image1, imageSource2: item.image2, tongluotco: item.totalnumber })}>
+            { id: item._id, Score1: item.Score1, Score2: item.Score2, text1: item.name1, text2: item.name2, raceto: item.raceto, second: item.Second1, imageSource: item.image, imageSource1: item.image1, imageSource2: item.image2, tongluotco: item.totalnumber, secondthem: item.Secondthem })}>
           <View style={styles.viewdate}>
             <Text style={[styles.txtdate, { fontSize: fontSizeAvg }]}>Tên trận : {item.title}</Text>
             <Text style={[styles.txtdate, { fontSize: fontSizeAvg }]}>Name 1 : {item.name1}</Text>
@@ -88,6 +88,7 @@ const ListGame = (props) => {
             <Text style={[styles.txtdate, { fontSize: fontSizeAvg }]}>Race to : {item.raceto}</Text>
             <Text style={[styles.txtdate, { fontSize: fontSizeAvg }]}>Tổng lượt cơ : {item.totalnumber}</Text>
             <Text style={[styles.txtdate, { fontSize: fontSizeAvg }]}>Date : {item.date}</Text>
+            <Text style={[styles.txtdate, { fontSize: fontSizeAvg }]}>Thời gian thêm : {item.Secondthem}</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity style={styles.custom} onPress={handledelete}>
